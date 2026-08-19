@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sprout — Mellow's mascot. A serene meditating seedling. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="120dp"
+    android:height="122dp"
+    android:viewportWidth="120"
+    android:viewportHeight="122">
+
+    <!-- shadow -->
+    <path android:pathData="M32,114 a28,5 0 1,0 56,0 a28,5 0 1,0 -56,0Z" android:fillColor="#10000000" />
+
+    <!-- stem -->
+    <path android:pathData="M60,50 V37" android:strokeColor="#6FB08A" android:strokeWidth="4" android:strokeLineCap="round" />
+
+    <!-- leaves -->
+    <path android:pathData="M60,41 C57,33 48,31.5 43.5,33.5 C44.5,42 52.5,45 60,41 Z" android:fillColor="#7FC199" />
+    <path android:pathData="M60,39 C63,31.5 71,30.5 75.5,33.5 C73.5,41.5 66,44 60,39 Z" android:fillColor="#6FB08A" />
+
+    <!-- body -->
+    <path android:pathData="M27,81 a33,34 0 1,0 66,0 a33,34 0 1,0 -66,0Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear"
+                android:startX="60" android:startY="47" android:endX="60" android:endY="115"
+                android:startColor="#FBD48F" android:endColor="#F2A63E" />
+        </aapt:attr>
+    </path>
+
+    <!-- belly -->
+    <path android:pathData="M39,89 a21,19 0 1,0 42,0 a21,19 0 1,0 -42,0Z" android:fillColor="#99FFF1D4" />
+
+    <!-- cheeks -->
+    <path android:pathData="M36.8,85 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0Z" android:fillColor="#80F1885B" />
+    <path android:pathData="M74.8,85 a4.2,4.2 0 1,0 8.4,0 a4.2,4.2 0 1,0 -8.4,0Z" android:fillColor="#80F1885B" />
+
+    <!-- eyes (calm, closed) -->
+    <path android:pathData="M40,78 C42.2,81 46.3,81 48.5,78" android:strokeColor="#3A322C" android:strokeWidth="2.6" android:strokeLineCap="round" />
+    <path android:pathData="M71.5,78 C73.7,81 77.8,81 80,78" android:strokeColor="#3A322C" android:strokeWidth="2.6" android:strokeLineCap="round" />
+
+    <!-- mouth -->
+    <path android:pathData="M53,89 C56.6,92.3 63.8,92.3 67.4,89" android:strokeColor="#3A322C" android:strokeWidth="2.6" android:strokeLineCap="round" />
+</vector>

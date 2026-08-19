@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.Mellow" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Brand colors -->
+        <item name="colorPrimary">@color/mellow_honey</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">@color/mellow_honey_soft</item>
+        <item name="colorOnPrimaryContainer">@color/mellow_honey_deep</item>
+        <item name="colorSecondary">@color/mellow_coral</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <!-- Surfaces -->
+        <item name="android:colorBackground">@color/mellow_canvas</item>
+        <item name="colorSurface">@color/mellow_surface</item>
+        <item name="colorOnSurface">@color/mellow_ink</item>
+        <item name="colorOnSurfaceVariant">@color/mellow_ink_2</item>
+        <item name="colorOutline">@color/mellow_line</item>
+        <item name="android:textColorPrimary">@color/mellow_ink</item>
+        <item name="android:textColorSecondary">@color/mellow_ink_2</item>
+        <item name="colorError">@color/mellow_error</item>
+
+        <!-- Typography default: Plus Jakarta Sans app-wide -->
+        <item name="android:fontFamily">@font/jakarta</item>
+        <item name="fontFamily">@font/jakarta</item>
+
+        <!-- System bars: warm canvas with dark icons (light theme) -->
+        <item name="android:windowBackground">@color/mellow_canvas</item>
+        <item name="android:statusBarColor">@color/mellow_canvas</item>
+        <item name="android:navigationBarColor">@color/mellow_canvas</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- Alias for compatibility if referenced elsewhere -->
+    <style name="Theme.Mellow.NoActionBar" parent="Theme.Mellow" />
+</resources>

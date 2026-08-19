@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    app:cardBackgroundColor="@color/mellow_surface"
+    app:cardCornerRadius="@dimen/radius_md"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvJournalDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="JAN 15, 2024"
+                android:textColor="@color/mellow_honey_deep"
+                android:textSize="11.5sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:letterSpacing="0.03" />
+
+            <ImageView
+                android:id="@+id/ivJournalMood"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:src="@drawable/mood_face_neutral"
+                android:contentDescription="mood" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvJournalTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:text="My Day at the Beach"
+            android:textAppearance="@style/TextAppearance.Mellow.Title"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvJournalContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Today was amazing…"
+            android:textColor="@color/mellow_ink_2"
+            android:textSize="14sp"
+            android:fontFamily="@font/jakarta"
+            android:lineSpacingMultiplier="1.4"
+            android:maxLines="3"
+            android:ellipsize="end" />
+
+        <TextView
+            android:id="@+id/tvJournalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="3:45 PM"
+            android:textColor="@color/mellow_ink_3"
+            android:textSize="11.5sp"
+            android:fontFamily="@font/jakarta" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

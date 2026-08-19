@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mellow — Innovative Screens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F7F3EC; --canvas-2:#F1E9DD; --surface:#FFFFFF; --surface-warm:#FFFDF9;
+  --ink:#2B2621; --ink-2:#8B8177; --ink-3:#B9AFA4; --line:#ECE4D8;
+  --honey:#F4A63C; --honey-deep:#E0891F; --honey-soft:#FBEBCB;
+  --coral:#F1885B; --coral-deep:#E56B3B; --coral-soft:#FBDFD1;
+  --sage:#6FB08A; --sage-deep:#4E9169; --sage-soft:#DBEBDF;
+  --lav:#8E82CE;  --lav-deep:#6E60B8;  --lav-soft:#E7E2F6;
+  --sky:#5EA6D9;  --sky-deep:#3F8AC4;  --sky-soft:#D8EAF6;
+  --sh-sm:0 2px 8px rgba(120,92,58,.06);
+  --sh:0 12px 30px rgba(120,92,58,.12),0 3px 8px rgba(120,92,58,.06);
+  --sh-lg:0 20px 50px rgba(120,92,58,.18);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
+}
+.dark{
+  --canvas:#141319; --canvas-2:#1B1A22; --surface:#201F29; --surface-warm:#242330;
+  --ink:#F3EEE7; --ink-2:#A79E95; --ink-3:#6E6860; --line:#2C2A36;
+  --honey-soft:#3a2f1c; --coral-soft:#3a271e; --sage-soft:#22322a; --lav-soft:#282540; --sky-soft:#1f2c3a;
+  --sh-sm:0 2px 8px rgba(0,0,0,.3); --sh:0 14px 34px rgba(0,0,0,.45); --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:radial-gradient(1100px 700px at 12% -5%,#efe4d3,transparent 55%),radial-gradient(1000px 800px at 100% 0,#f3e7e0,transparent 50%),#eee6da;color:#2B2621;padding:40px 22px 80px}
+h1.title{font-family:var(--serif);font-weight:600;font-size:40px;letter-spacing:-.02em;margin-bottom:6px}
+h1.title span{font-style:italic;color:#E08E22}
+.sub{color:#7a6f62;font-size:15px;max-width:720px;line-height:1.55;margin-bottom:24px}
+.toggle{position:fixed;top:20px;right:22px;z-index:99;display:flex;gap:6px;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--sh);border:1px solid #eadfce}
+.toggle button{border:none;background:none;padding:8px 15px;border-radius:999px;font-family:var(--font);font-weight:700;font-size:13px;color:#8a7f70;cursor:pointer}
+.toggle button.on{background:#2B2621;color:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:40px 30px;justify-content:center;align-items:flex-start}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:344px}
+.cap{font-size:13px;font-weight:800;color:#4a4038}
+.capd{font-size:12px;color:#8a7f70;text-align:center;line-height:1.5;max-width:320px}
+.new{display:inline-block;background:#E56B3B;color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:6px}
+
+.phone{width:344px;height:734px;border-radius:46px;background:#111;padding:10px;box-shadow:var(--sh-lg);flex:0 0 auto}
+.screen{width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:var(--canvas);color:var(--ink);font-size:14px}
+.sb{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:13px;font-weight:700;color:var(--ink);z-index:40}
+.view{position:absolute;inset:0;overflow-y:auto;padding:52px 18px 24px}.view::-webkit-scrollbar{display:none}
+.ic{stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.appbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.appbar .back{width:38px;height:38px;border-radius:12px;background:var(--canvas-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.appbar .back svg{width:19px;height:19px}
+.appbar h2{font-family:var(--serif);font-size:23px;font-weight:600;flex:1}
+.iconbtn{width:38px;height:38px;border-radius:12px;background:var(--canvas-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.iconbtn svg{width:19px;height:19px}
+.label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-sm)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;font-weight:800;font-size:14px;cursor:pointer}
+.btn-coral{background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;box-shadow:0 10px 20px rgba(238,124,67,.34)}
+.avatar{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:0 0 auto}
+.a-h{background:linear-gradient(140deg,#F5B24E,#EE7C43)}.a-s{background:linear-gradient(140deg,#78C39B,#5EA6D9)}.a-l{background:linear-gradient(140deg,#A79CDF,#8E82CE)}.a-k{background:linear-gradient(140deg,#5EA6D9,#3F8AC4)}
+.dotstrip{display:flex;gap:5px}
+.dotstrip i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dotstrip i.on{background:var(--sage)}
+.dotstrip i.today{background:var(--honey);box-shadow:0 0 0 3px var(--honey-soft)}
+.weather{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px}
+.section{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 12px}
+.section h3{font-size:16px;font-weight:800}.section a{font-size:12.5px;font-weight:700;color:var(--honey-deep)}
+.badge{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;width:64px}
+.badge .b{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center}
+.badge .b svg{width:26px;height:26px}
+.badge span{font-size:10px;font-weight:700;color:var(--ink-2);text-align:center;line-height:1.2}
+.badge.lock .b{background:var(--canvas-2)!important}.badge.lock .b svg{opacity:.5}
+.price{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:800;color:var(--honey-deep)}
+.price .c{width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF0B8,#F4B740);border:1.5px solid #E39B1E}
+.field{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:13px 15px;font-size:13.5px;color:var(--ink-2)}
+.chip{font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.face{border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+</style></head>
+<body>
+<div class="toggle"><button id="tl" class="on" onclick="setMode('light')">☀︎ Light</button><button id="td" onclick="setMode('dark')">☾ Dark</button></div>
+
+<h1 class="title">Three pages, <span>reinvented</span></h1>
+<p class="sub">Not restyles — new features. Buddies becomes a co-op <b>Circle</b> with <b>Breathe Together</b>. Rewards becomes a hub with a <b>Calm Shop</b> (coins finally do something), badges, and a jar collection. Journal becomes <b>Reflections</b> with daily prompts and a gentle AI note on each entry.</p>
+
+<div class="grid" id="grid">
+
+<!-- ============ 1. YOUR CIRCLE (Buddies reimagined) ============ -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <h2>Your circle</h2>
+      <div class="iconbtn"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+    </div>
+
+    <!-- circle streak hero -->
+    <div style="border-radius:24px;padding:18px;background:linear-gradient(135deg,#FBB84D,#EE8A3C);box-shadow:0 14px 30px rgba(233,150,45,.32);color:#fff;position:relative;overflow:hidden">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="#fff"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>
+        <div style="font-size:32px;font-weight:800;line-height:1">12<span style="font-size:15px;font-weight:700"> days</span></div>
+      </div>
+      <div style="font-size:13.5px;font-weight:700;margin-top:6px;opacity:.95">Circle streak — everyone checked in 🌿</div>
+      <div style="display:flex;align-items:center;gap:-6px;margin-top:14px">
+        <div class="avatar a-h" style="width:34px;height:34px;font-size:13px;border:2px solid #fff">A</div>
+        <div class="avatar a-s" style="width:34px;height:34px;font-size:13px;border:2px solid #fff;margin-left:-8px">J</div>
+        <div class="avatar a-l" style="width:34px;height:34px;font-size:13px;border:2px solid #fff;margin-left:-8px">S</div>
+        <div class="avatar a-k" style="width:34px;height:34px;font-size:13px;border:2px solid #fff;margin-left:-8px">M</div>
+        <div style="margin-left:auto;text-align:right"><div style="font-size:11px;font-weight:700;opacity:.9">THIS WEEK</div><div style="font-size:14px;font-weight:800">18 / 21 check-ins</div></div>
+      </div>
+    </div>
+
+    <div class="section"><h3>Buddies</h3><a>Requests · 1</a></div>
+
+    <!-- buddy card 1 -->
+    <div class="card" style="padding:14px;margin-bottom:11px">
+      <div style="display:flex;align-items:center;gap:11px">
+        <div class="avatar a-s" style="width:44px;height:44px;border-radius:15px;font-size:16px">J</div>
+        <div style="flex:1">
+          <div style="font-weight:800;font-size:14.5px">@jollyplum576</div>
+          <span class="weather" style="background:var(--sage-soft);color:var(--sage-deep);margin-top:3px">
+            <svg viewBox="0 0 24 24" style="width:13px;height:13px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1 1M17 17l1 1M18 6l-1 1M7 17l-1 1"/></svg>
+            feeling calm</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;color:var(--coral-deep);font-weight:800;font-size:13px"><svg viewBox="0 0 24 24" style="width:15px;height:15px" fill="currentColor"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>5</div>
+      </div>
+      <div class="dotstrip" style="margin:13px 0 12px"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="today"></i></div>
+      <div style="display:flex;gap:9px">
+        <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink);padding:11px"><svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.5 21a1.5 1.5 0 0 0 3 0"/></svg>Nudge</div>
+        <div class="btn btn-coral" style="flex:1.4;padding:11px"><svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg>Breathe together</div>
+      </div>
+    </div>
+
+    <!-- buddy card 2 -->
+    <div class="card" style="padding:14px">
+      <div style="display:flex;align-items:center;gap:11px">
+        <div class="avatar a-l" style="width:44px;height:44px;border-radius:15px;font-size:16px">S</div>
+        <div style="flex:1">
+          <div style="font-weight:800;font-size:14.5px">@swiftstarfruit425</div>
+          <span class="weather" style="background:var(--sky-soft);color:var(--sky-deep);margin-top:3px">
+            <svg viewBox="0 0 24 24" style="width:13px;height:13px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16a4 4 0 0 1 1-7.9A5 5 0 0 1 17 8a3.5 3.5 0 0 1 .5 7Z"/></svg>
+            a bit low</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:5px;color:var(--coral-deep);font-weight:800;font-size:13px"><svg viewBox="0 0 24 24" style="width:15px;height:15px" fill="currentColor"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>2</div>
+      </div>
+      <div class="dotstrip" style="margin:13px 0 12px"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="today"></i></div>
+      <div style="display:flex;gap:9px">
+        <div class="btn" style="flex:1;background:var(--coral-soft);color:var(--coral-deep);padding:11px">Send a calm 💛</div>
+        <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink);padding:11px"><svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.5 21a1.5 1.5 0 0 0 3 0"/></svg>Nudge</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Buddies → Your Circle <span class="new">NEW</span></div>
+<div class="capd">Co-op circle streak · mood weather on each buddy · 7-day check-in strip · tap a buddy for your duo bond.</div>
+</div>
+
+<!-- ============ 1b. DUO BOND (per-buddy detail) ============ -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <h2>Your bond</h2>
+      <div class="iconbtn"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/><circle cx="5" cy="12" r="1.6"/></svg></div>
+    </div>
+
+    <!-- duo streak hero: two avatars + shared streak -->
+    <div style="border-radius:24px;padding:20px 18px;background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;box-shadow:0 14px 30px rgba(238,124,67,.32);text-align:center">
+      <div style="display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+        <div class="avatar a-h" style="width:52px;height:52px;border-radius:17px;font-size:19px;border:2.5px solid #fff;z-index:2">A</div>
+        <div style="width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin:0 -10px;z-index:3;box-shadow:0 3px 8px rgba(0,0,0,.15)"><svg viewBox="0 0 24 24" style="width:18px;height:18px" fill="#E56B3B"><path d="M12 21s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z"/></svg></div>
+        <div class="avatar a-s" style="width:52px;height:52px;border-radius:17px;font-size:19px;border:2.5px solid #fff;z-index:2">J</div>
+      </div>
+      <div style="font-size:36px;font-weight:800;line-height:1">8</div>
+      <div style="font-size:13.5px;font-weight:700;opacity:.95;margin-top:3px">day duo streak with @jollyplum576</div>
+      <div style="display:inline-block;background:#ffffff2e;font-size:11.5px;font-weight:700;padding:5px 12px;border-radius:999px;margin-top:12px">Both checked in today ✓</div>
+    </div>
+
+    <!-- shared 14-day history -->
+    <div class="section"><h3>Last 2 weeks</h3><span class="label" style="letter-spacing:.04em">you · jolly</span></div>
+    <div class="card" style="padding:15px 14px">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px">
+        <span style="font-size:11px;font-weight:800;color:var(--ink-2);width:34px">You</span>
+        <div class="dotstrip" style="gap:4px;flex-wrap:wrap"><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="today"></i></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:11px;font-weight:800;color:var(--ink-2);width:34px">Jolly</span>
+        <div class="dotstrip" style="gap:4px;flex-wrap:wrap"><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="today"></i></div>
+      </div>
+    </div>
+
+    <!-- shared stats -->
+    <div style="display:flex;gap:10px;margin-top:12px">
+      <div class="card" style="flex:1;padding:14px;text-align:center"><div style="font-size:22px;font-weight:800">24</div><div style="font-size:11px;color:var(--ink-2);font-weight:700">calm minutes together</div></div>
+      <div class="card" style="flex:1;padding:14px;text-align:center"><div style="font-size:22px;font-weight:800">12</div><div style="font-size:11px;color:var(--ink-2);font-weight:700">longest duo streak</div></div>
+    </div>
+
+    <!-- actions -->
+    <div class="btn btn-coral" style="padding:16px;border-radius:20px;margin-top:16px;font-size:15px"><svg viewBox="0 0 24 24" style="width:19px;height:19px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg>Breathe together</div>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink);padding:13px"><svg viewBox="0 0 24 24" style="width:17px;height:17px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.5 21a1.5 1.5 0 0 0 3 0"/></svg>Nudge</div>
+      <div class="btn" style="flex:1;background:var(--coral-soft);color:var(--coral-deep);padding:13px">Send a calm 💛</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Buddy → Duo Bond <span class="new">NEW</span></div>
+<div class="capd">Tap any buddy from the circle: a 1:1 bond with its own duo streak, a 2-week shared history, calm-minutes together, and Breathe Together.</div>
+</div>
+
+<!-- ============ 2. BREATHE TOGETHER (bonus) ============ -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="padding:0;background:linear-gradient(180deg,#FCE7D6,#F6DCD6 42%,#DCE7F3);display:flex;flex-direction:column;align-items:center">
+    <div style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:56px 22px 0">
+      <div style="width:40px;height:40px;border-radius:13px;background:#ffffff8c;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:18px;height:18px" fill="none" stroke="#3A322C" stroke-width="2.1" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+      <div style="font-size:12.5px;font-weight:800;letter-spacing:.05em;color:#6a5f56">BREATHING TOGETHER</div>
+      <div style="width:40px"></div>
+    </div>
+
+    <!-- two people -->
+    <div style="display:flex;align-items:center;gap:10px;margin-top:22px">
+      <div style="text-align:center"><div class="avatar a-h" style="width:44px;height:44px;border-radius:15px;font-size:16px;border:2px solid #fff">A</div><div style="font-size:10.5px;font-weight:700;color:#6a5f56;margin-top:4px">You</div></div>
+      <svg viewBox="0 0 24 24" style="width:22px;height:22px;opacity:.6" fill="none" stroke="#6a5f56" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      <div style="text-align:center"><div class="avatar a-s" style="width:44px;height:44px;border-radius:15px;font-size:16px;border:2px solid #fff">J</div><div style="font-size:10.5px;font-weight:700;color:#6a5f56;margin-top:4px">Jolly</div></div>
+    </div>
+
+    <!-- shared orb -->
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div style="position:relative;width:220px;height:220px;display:flex;align-items:center;justify-content:center">
+        <div style="position:absolute;inset:0;border-radius:50%;border:1.5px solid #ffffff88"></div>
+        <div style="position:absolute;inset:24px;border-radius:50%;border:1.5px solid #ffffff66"></div>
+        <div style="width:158px;height:158px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fff,#fff6ee 45%,#ffe6d3);box-shadow:0 0 60px 16px rgba(255,240,225,.9),0 18px 46px rgba(224,150,90,.3);display:flex;flex-direction:column;align-items:center;justify-content:center">
+          <div style="font-size:21px;font-weight:800;color:#3A322C">Breathe in</div>
+          <div style="font-size:13px;color:#9a8b7d;font-weight:700;margin-top:2px">together</div>
+        </div>
+      </div>
+      <div style="display:inline-flex;align-items:center;gap:7px;background:#ffffff8c;padding:8px 15px;border-radius:999px;margin-top:34px">
+        <span style="width:8px;height:8px;border-radius:50%;background:#6FB08A"></span>
+        <span style="font-size:12.5px;font-weight:700;color:#6a5f56">Jolly is breathing with you</span>
+      </div>
+    </div>
+
+    <div style="width:100%;padding:0 22px 40px;text-align:center">
+      <div class="btn" style="background:#fff;color:#E56B3B;padding:16px;border-radius:20px;box-shadow:0 10px 22px rgba(224,120,80,.22)">Leave session</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Breathe Together <span class="new">NEW</span></div>
+<div class="capd">A synchronous breathing session — you and a buddy follow the same orb, in real time. Calm, shared, not competitive.</div>
+</div>
+
+<!-- ============ 3. REWARDS HUB ============ -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <h2>Rewards</h2>
+      <div style="display:inline-flex;align-items:center;gap:6px;background:var(--honey-soft);padding:7px 12px;border-radius:999px"><span style="width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF0B8,#F4B740);border:1.5px solid #E39B1E"></span><span style="font-weight:800;color:var(--honey-deep);font-size:13px">248</span></div>
+    </div>
+
+    <!-- level hero -->
+    <div style="border-radius:24px;padding:18px;background:linear-gradient(135deg,#8E82CE,#6E60B8);color:#fff;box-shadow:0 14px 30px rgba(110,96,184,.3)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div style="width:48px;height:48px;border-radius:16px;background:#ffffff2e;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c-4-3-7-6-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4-3 7-7 10Z"/></svg></div>
+        <div><div style="font-size:12px;font-weight:700;opacity:.85">LEVEL 3</div><div style="font-size:20px;font-weight:800;font-family:var(--serif)">Calm Cultivator</div></div>
+      </div>
+      <div style="height:8px;border-radius:999px;background:#ffffff33;margin-top:14px;overflow:hidden"><i style="display:block;height:100%;width:60%;background:#fff;border-radius:999px"></i></div>
+      <div style="font-size:11.5px;font-weight:700;opacity:.9;margin-top:7px">120 / 200 coins to Level 4 · Serene Soul</div>
+    </div>
+
+    <div class="section"><h3>Achievements</h3><a>See all</a></div>
+    <div style="display:flex;gap:8px;overflow-x:auto">
+      <div class="badge"><div class="b" style="background:var(--coral-soft);color:var(--coral-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg></div><span>First Breath</span></div>
+      <div class="badge"><div class="b" style="background:var(--honey-soft);color:var(--honey-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5" fill="currentColor" stroke="none"/></svg></div><span>7-Day Streak</span></div>
+      <div class="badge"><div class="b" style="background:var(--lav-soft);color:var(--lav-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M17 6a6 6 0 1 1-9 5 5 5 0 0 0 9-5Z"/></svg></div><span>Night Owl</span></div>
+      <div class="badge lock"><div class="b" style="color:var(--ink-3)"><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><span>Jar Master</span></div>
+      <div class="badge lock"><div class="b" style="color:var(--ink-3)"><svg class="ic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></div><span>30 Days</span></div>
+    </div>
+
+    <div class="section"><h3>Calm shop</h3><a>Spend coins</a></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px">
+      <div class="card" style="padding:14px">
+        <div style="width:40px;height:40px;border-radius:13px;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg viewBox="0 0 24 24" style="width:21px;height:21px" fill="none" stroke="var(--sky-deep)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12a9 9 0 0 1 9-9c-3 4-3 14 0 18a9 9 0 0 1-9-9Z"/></svg></div>
+        <div style="font-weight:800;font-size:13.5px">Ocean theme</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px"><span class="price"><span class="c"></span>50</span></div>
+      </div>
+      <div class="card" style="padding:14px">
+        <div style="width:40px;height:40px;border-radius:13px;background:var(--sage-soft);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg viewBox="0 0 24 24" style="width:21px;height:21px" fill="none" stroke="var(--sage-deep)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="5" width="14" height="14" rx="3"/><path d="M9 9h6v6H9z"/></svg></div>
+        <div style="font-weight:800;font-size:13.5px">Box breathing</div>
+        <div style="margin-top:6px"><span class="price"><span class="c"></span>30</span></div>
+      </div>
+      <div class="card" style="padding:14px">
+        <div style="width:40px;height:40px;border-radius:13px;background:var(--coral-soft);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg viewBox="0 0 24 24" style="width:21px;height:21px" fill="none" stroke="var(--coral-deep)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M5 8l7-3 7 3M5 8l-2 4 2 2M19 8l2 4-2 2"/></svg></div>
+        <div style="font-weight:800;font-size:13.5px">Streak freeze</div>
+        <div style="margin-top:6px"><span class="price"><span class="c"></span>40</span></div>
+      </div>
+      <div class="card" style="padding:14px;opacity:.72">
+        <div style="width:40px;height:40px;border-radius:13px;background:var(--honey-soft);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><svg viewBox="0 0 24 24" style="width:21px;height:21px" fill="none" stroke="var(--honey-deep)" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M16 9a5 5 0 0 1 0 6"/></svg></div>
+        <div style="font-weight:800;font-size:13.5px">Rain sounds</div>
+        <div style="display:flex;align-items:center;gap:5px;margin-top:6px;color:var(--sage-deep);font-weight:800;font-size:12px"><svg viewBox="0 0 24 24" style="width:14px;height:14px" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l4 4 10-10"/></svg>Owned</div>
+      </div>
+    </div>
+
+    <div class="section"><h3>Jars collected</h3><a>12 total</a></div>
+    <div style="display:flex;gap:9px">
+      <div style="flex:1;height:56px;border-radius:14px;background:var(--honey-soft);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px"><div style="width:22px;height:30px;background:linear-gradient(180deg,#FFE08A,#FFC94D);border-radius:4px 4px 7px 7px"></div></div>
+      <div style="flex:1;height:56px;border-radius:14px;background:var(--sage-soft);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px"><div style="width:22px;height:38px;background:linear-gradient(180deg,#a7ddb9,#6FB08A);border-radius:4px 4px 7px 7px"></div></div>
+      <div style="flex:1;height:56px;border-radius:14px;background:var(--sky-soft);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px"><div style="width:22px;height:26px;background:linear-gradient(180deg,#a9d3ee,#5EA6D9);border-radius:4px 4px 7px 7px"></div></div>
+      <div style="flex:1;height:56px;border-radius:14px;background:var(--lav-soft);display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px"><div style="width:22px;height:34px;background:linear-gradient(180deg,#c3bbee,#8E82CE);border-radius:4px 4px 7px 7px"></div></div>
+      <div style="flex:1;height:56px;border-radius:14px;background:var(--canvas-2);display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-weight:800;font-size:13px">+8</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Rewards → Hub with Calm Shop <span class="new">NEW</span></div>
+<div class="capd">Levels · achievement badges · a shop where coins buy themes, breathing patterns, streak freezes &amp; sounds · a shelf of every jar you've filled.</div>
+</div>
+
+<!-- ============ 4. JOURNAL / REFLECTIONS ============ -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <h2>Journal</h2>
+      <div class="iconbtn" style="background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;box-shadow:0 8px 16px rgba(238,124,67,.34)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+    </div>
+
+    <!-- prompt of the day -->
+    <div style="border-radius:22px;padding:18px;background:var(--lav-soft);position:relative;overflow:hidden">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="label" style="color:var(--lav-deep)">Today's prompt</div>
+        <svg viewBox="0 0 24 24" style="width:17px;height:17px;color:var(--lav-deep)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-7 7M8 21H3v-5M3 21l7-7"/></svg>
+      </div>
+      <div style="font-family:var(--serif);font-size:19px;font-weight:500;line-height:1.3;color:var(--ink);margin-top:8px">What's one small thing that gave you a moment of calm today?</div>
+      <div class="btn" style="background:var(--lav);color:#fff;padding:12px;margin-top:14px;width:60%">Start writing</div>
+    </div>
+
+    <!-- insight strip -->
+    <div style="display:flex;gap:9px;margin-top:14px">
+      <div class="card" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800">12</div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">entries</div></div>
+      <div class="card" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--coral-deep)">3🔥</div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">day streak</div></div>
+      <div class="card" style="flex:1;padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center"><div class="face" style="width:24px;height:24px;background:var(--sage-soft);margin-bottom:2px"><svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">mostly calm</div></div>
+    </div>
+
+    <!-- filter chips -->
+    <div style="display:flex;gap:8px;margin:16px 0 14px;overflow-x:auto">
+      <span class="chip on">All</span><span class="chip">Calm</span><span class="chip">Great</span><span class="chip">Low</span>
+    </div>
+
+    <!-- entry with AI reflection -->
+    <div class="card" style="padding:16px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--honey-deep);font-weight:800;font-size:11.5px">TODAY · 1:06 PM</span>
+        <div class="face" style="width:32px;height:32px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" style="width:20px;height:20px" fill="none" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="font-weight:800;font-size:15.5px;margin-top:9px">Does this help? I think yes</div>
+      <div style="color:var(--ink-2);font-size:13px;line-height:1.5;margin-top:4px">It really helps me with my well-being when I write my thoughts out.</div>
+      <div style="display:flex;gap:9px;align-items:flex-start;background:var(--lav-soft);border-radius:14px;padding:11px 12px;margin-top:12px">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;flex:0 0 auto;margin-top:1px" fill="var(--lav-deep)"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+        <div style="font-size:12px;color:var(--lav-deep);line-height:1.45;font-weight:600">Reflection · Writing seems to be a grounding ritual for you — a gentle way to decompress. Keep leaning on it.</div>
+      </div>
+    </div>
+
+    <!-- on this day -->
+    <div class="card" style="padding:14px;display:flex;align-items:center;gap:11px;background:var(--honey-soft);border-color:transparent">
+      <svg viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--honey-deep)" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+      <div style="flex:1"><div style="font-weight:800;font-size:13px;color:var(--honey-deep)">On this day · 1 month ago</div><div style="font-size:12px;color:var(--ink-2);font-weight:600">“First journal — happy to get started”</div></div>
+      <svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px;color:var(--honey-deep)"><path d="M9 6l6 6-6 6"/></svg>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Journal → Reflections <span class="new">NEW</span></div>
+<div class="capd">Daily writing prompt · journaling insights · mood filters · a gentle AI “reflection” on each entry · “on this day” memories.</div>
+</div>
+
+</div>
+<script>
+function setMode(m){document.getElementById('tl').classList.toggle('on',m==='light');document.getElementById('td').classList.toggle('on',m==='dark');document.querySelectorAll('#grid .sc').forEach(s=>s.classList.toggle('dark',m==='dark'));}
+</script>
+</body></html>

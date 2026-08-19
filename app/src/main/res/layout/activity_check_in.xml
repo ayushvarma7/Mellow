@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_breathe_gradient">
+
+    <!-- ===================== THERAPEUTIC FLUID FILL ===================== -->
+    <edu.northeastern.mellow.ui.checkin.WaveView
+        android:id="@+id/waveView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ===================== TOP BAR ===================== -->
+    <FrameLayout
+        android:id="@+id/btnClose"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shape_round_14"
+        android:backgroundTint="#59FFFFFF"
+        android:clickable="true"
+        android:focusable="true"
+        android:contentDescription="Close"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_close_x"
+            app:tint="#3A322C"
+            android:contentDescription="" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:text="BREATHING · 4 BREATHS"
+        android:textColor="@color/mellow_text_secondary"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:letterSpacing="0.06"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ===================== BREATHING ORB ===================== -->
+    <View
+        android:id="@+id/ring2"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:alpha="0.35"
+        android:background="@drawable/bg_orb_ring"
+        app:layout_constraintTop_toTopOf="@id/cardBreath"
+        app:layout_constraintBottom_toBottomOf="@id/cardBreath"
+        app:layout_constraintStart_toStartOf="@id/cardBreath"
+        app:layout_constraintEnd_toEndOf="@id/cardBreath" />
+
+    <View
+        android:id="@+id/ring1"
+        android:layout_width="216dp"
+        android:layout_height="216dp"
+        android:alpha="0.55"
+        android:background="@drawable/bg_orb_ring"
+        app:layout_constraintTop_toTopOf="@id/cardBreath"
+        app:layout_constraintBottom_toBottomOf="@id/cardBreath"
+        app:layout_constraintStart_toStartOf="@id/cardBreath"
+        app:layout_constraintEnd_toEndOf="@id/cardBreath" />
+
+    <FrameLayout
+        android:id="@+id/cardBreath"
+        android:layout_width="184dp"
+        android:layout_height="184dp"
+        android:background="@drawable/bg_orb"
+        android:elevation="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.34">
+
+        <LinearLayout
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginBottom="6dp"
+                android:src="@drawable/ic_sprout"
+                android:contentDescription="Sprout" />
+
+            <TextView
+                android:id="@+id/tvBreathInstruction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tap to begin"
+                android:textColor="#3A322C"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:lineSpacingMultiplier="1.0" />
+
+            <TextView
+                android:id="@+id/tvBreathCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Breath 0 / 4"
+                android:textColor="#9A8B7D"
+                android:textStyle="bold"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- ===================== BREATH DOTS ===================== -->
+    <LinearLayout
+        android:id="@+id/breathDots"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/cardBreath"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <View android:id="@+id/tvMilestone1" android:layout_width="11dp" android:layout_height="11dp"
+            android:layout_margin="6dp" android:alpha="0.35"
+            android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_coral" />
+        <View android:id="@+id/tvMilestone2" android:layout_width="11dp" android:layout_height="11dp"
+            android:layout_margin="6dp" android:alpha="0.35"
+            android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_coral" />
+        <View android:id="@+id/tvMilestone3" android:layout_width="11dp" android:layout_height="11dp"
+            android:layout_margin="6dp" android:alpha="0.35"
+            android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_coral" />
+        <View android:id="@+id/tvMilestone4" android:layout_width="11dp" android:layout_height="11dp"
+            android:layout_margin="6dp" android:alpha="0.35"
+            android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_coral" />
+    </LinearLayout>
+
+    <!-- ===================== COINS PILL ===================== -->
+    <TextView
+        android:id="@+id/tvCoinsEarned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="9dp"
+        android:text="0 / 13 coins"
+        android:textColor="@color/mellow_honey_deep"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:drawablePadding="7dp"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_pill"
+        android:backgroundTint="#8CFFFFFF"
+        app:drawableStartCompat="@drawable/ic_coin"
+        app:layout_constraintTop_toBottomOf="@id/breathDots"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- ===================== SUBTLE PROGRESS TRACK ===================== -->
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/bg_track_white"
+        app:layout_constraintBottom_toTopOf="@id/btnBegin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <View
+            android:id="@+id/progressFill"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_fill_white" />
+    </FrameLayout>
+
+    <!-- ===================== BOTTOM CONTROLS ===================== -->
+    <Button
+        android:id="@+id/btnBegin"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Begin"
+        android:textColor="@color/mellow_coral_deep"
+        android:textSize="16.5sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/white"
+        app:cornerRadius="22dp"
+        app:layout_constraintBottom_toTopOf="@id/tvHint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btnDone"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="Claim my coins"
+        android:textColor="#FFFFFF"
+        android:textSize="16.5sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:backgroundTint="@color/mellow_coral"
+        app:cornerRadius="22dp"
+        app:layout_constraintBottom_toTopOf="@id/tvHint"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="Follow the orb — in as it grows, out as it shrinks"
+        android:textColor="@color/mellow_text_secondary"
+        android:textSize="12.5sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

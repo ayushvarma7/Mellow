@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="112dp"
+    android:viewportWidth="96"
+    android:viewportHeight="112">
+    <!-- honey fill -->
+    <path
+        android:pathData="M22,60 h52 v30 a10,10 0 0 1 -10,10 h-32 a10,10 0 0 1 -10,-10 z"
+        android:fillColor="#FFD25A" />
+    <!-- coins -->
+    <path
+        android:pathData="M38,68 m-6,0 a6,6 0 1,0 12,0 a6,6 0 1,0 -12,0 z"
+        android:fillColor="#FFE9A8"
+        android:strokeColor="#E0A93C"
+        android:strokeWidth="1.5" />
+    <path
+        android:pathData="M54,73 m-5,0 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 z"
+        android:fillColor="#FFE9A8"
+        android:strokeColor="#E0A93C"
+        android:strokeWidth="1.5" />
+    <!-- glass body -->
+    <path
+        android:pathData="M32,18 h32 a14,14 0 0 1 14,14 v58 a14,14 0 0 1 -14,14 h-32 a14,14 0 0 1 -14,-14 v-58 a14,14 0 0 1 14,-14 z"
+        android:fillColor="#33FFFFFF"
+        android:strokeColor="#88FFFFFF"
+        android:strokeWidth="3" />
+    <!-- shine -->
+    <path
+        android:pathData="M28,30 v18"
+        android:strokeColor="#99FFFFFF"
+        android:strokeWidth="4"
+        android:strokeLineCap="round" />
+    <!-- lid -->
+    <path
+        android:pathData="M32,6 h32 a6,6 0 0 1 6,6 v2 a6,6 0 0 1 -6,6 h-32 a6,6 0 0 1 -6,-6 v-2 a6,6 0 0 1 6,-6 z"
+        android:fillColor="#C9781B" />
+</vector>

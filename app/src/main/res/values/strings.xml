@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mellow</string>
+    <string name="app_slogan">Small moments. Steady momentum.</string>
+    <string name="sign_in_with_google">Continue with Google</string>
+    <string name="signing_in">Signing in…</string>
+    <string name="sign_in_error">Sign in failed. Please try again.</string>
+    <string name="default_web_client_id">622504792073-l0qnn4ahcj00rbndmru86gpr3to01s2r.apps.googleusercontent.com</string>
+    <string name="mood_widget_description">Log today\'s mood in one tap, right from your home screen.</string>
+    <string name="mood_stats_widget_description">Your mood trend and the last 7 days</string>
+</resources>

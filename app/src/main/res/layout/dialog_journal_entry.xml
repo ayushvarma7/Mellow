@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="16dp"
+    app:cardBackgroundColor="@color/mellow_surface_warm"
+    app:cardCornerRadius="26dp"
+    app:cardElevation="14dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:maxHeight="560dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="New entry"
+                    android:textAppearance="@style/TextAppearance.Mellow.Display"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/btnPickDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="12.5sp"
+                    android:fontFamily="@font/jakarta_bold"
+                    android:background="@drawable/shape_pill"
+                    android:backgroundTint="@color/mellow_canvas_2"
+                    android:drawableStart="@drawable/ic_calendar"
+                    android:drawablePadding="6dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </LinearLayout>
+
+            <!-- prompt chip -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_round_12"
+                android:backgroundTint="@color/mellow_lav_soft"
+                android:padding="11dp"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_sparkle"
+                    app:tint="@color/mellow_lav_deep"
+                    android:contentDescription="prompt" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="What gave you a moment of calm?"
+                    android:textColor="@color/mellow_lav_deep"
+                    android:textSize="12.5sp"
+                    android:fontFamily="@font/jakarta_bold" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etJournalTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:hint="Title (optional)"
+                android:textColorHint="@color/mellow_ink_3"
+                android:textColor="@color/mellow_ink"
+                android:textSize="15sp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:padding="14dp"
+                android:maxLines="1"
+                android:inputType="text"
+                android:fontFamily="@font/jakarta" />
+
+            <EditText
+                android:id="@+id/etJournalContent"
+                android:layout_width="match_parent"
+                android:layout_height="92dp"
+                android:layout_marginTop="10dp"
+                android:hint="Write freely…"
+                android:textColorHint="@color/mellow_ink_3"
+                android:textColor="@color/mellow_ink"
+                android:textSize="14sp"
+                android:background="@drawable/rounded_edittext_bg"
+                android:padding="14dp"
+                android:gravity="top|start"
+                android:inputType="textMultiLine|textCapSentences"
+                android:scrollbars="vertical"
+                android:fontFamily="@font/jakarta"
+                android:lineSpacingExtra="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="How are you feeling?"
+                android:textColor="@color/mellow_ink_2"
+                android:textSize="12.5sp"
+                android:fontFamily="@font/jakarta_bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="5">
+
+                <androidx.cardview.widget.CardView android:id="@+id/cardMood1"
+                    android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1"
+                    android:layout_margin="3dp" app:cardBackgroundColor="@color/mellow_canvas_2"
+                    app:cardCornerRadius="14dp" app:cardElevation="0dp"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_gravity="center" android:src="@drawable/mood_face_depressed"
+                        android:contentDescription="Sad" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView android:id="@+id/cardMood2"
+                    android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1"
+                    android:layout_margin="3dp" app:cardBackgroundColor="@color/mellow_canvas_2"
+                    app:cardCornerRadius="14dp" app:cardElevation="0dp"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_gravity="center" android:src="@drawable/mood_face_sad"
+                        android:contentDescription="Low" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView android:id="@+id/cardMood3"
+                    android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1"
+                    android:layout_margin="3dp" app:cardBackgroundColor="@color/mellow_honey"
+                    app:cardCornerRadius="14dp" app:cardElevation="0dp"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_gravity="center" android:src="@drawable/mood_face_neutral"
+                        android:contentDescription="Okay" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView android:id="@+id/cardMood4"
+                    android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1"
+                    android:layout_margin="3dp" app:cardBackgroundColor="@color/mellow_canvas_2"
+                    app:cardCornerRadius="14dp" app:cardElevation="0dp"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_gravity="center" android:src="@drawable/mood_face_happy"
+                        android:contentDescription="Good" />
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView android:id="@+id/cardMood5"
+                    android:layout_width="0dp" android:layout_height="54dp" android:layout_weight="1"
+                    android:layout_margin="3dp" app:cardBackgroundColor="@color/mellow_canvas_2"
+                    app:cardCornerRadius="14dp" app:cardElevation="0dp"
+                    android:clickable="true" android:focusable="true">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp"
+                        android:layout_gravity="center" android:src="@drawable/mood_face_overjoyed"
+                        android:contentDescription="Great" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <Button
+                    android:id="@+id/btnCancel"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:text="Cancel"
+                    android:textColor="@color/mellow_ink_2"
+                    android:textSize="14sp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/jakarta_bold"
+                    android:paddingHorizontal="14dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:backgroundTint="@color/mellow_coral"
+                    android:text="Save · +10 coins"
+                    android:textColor="@color/white"
+                    android:textSize="14.5sp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/jakarta_bold"
+                    app:cornerRadius="16dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.cardview.widget.CardView>

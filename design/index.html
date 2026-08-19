@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mellow — Design System &amp; Screens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F7F3EC; --canvas-2:#F1E9DD; --surface:#fff;
+  --ink:#2B2621; --ink-2:#8B8177; --ink-3:#B9AFA4; --line:#ECE4D8;
+  --honey:#F4A63C; --honey-deep:#E0891F; --coral:#F1885B; --coral-deep:#E56B3B;
+  --sage:#6FB08A; --lav:#8E82CE; --sky:#5EA6D9;
+  --overjoyed:#9BB068; --happy:#FFCE5C; --neutral:#AEA194; --sad:#ED7E1C; --depressed:#A694F5;
+  --sh:0 12px 30px rgba(120,92,58,.12),0 3px 8px rgba(120,92,58,.06);
+  --sh-lg:0 24px 60px rgba(120,92,58,.18);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);color:var(--ink);background:
+  radial-gradient(1200px 700px at 10% -5%,#efe4d3,transparent 55%),
+  radial-gradient(1100px 800px at 100% 0,#f3e7e0,transparent 50%),#F7F3EC;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* hero */
+header{padding:80px 0 48px;text-align:center}
+.mark{width:88px;height:88px;border-radius:28px;margin:0 auto 24px;
+  background:linear-gradient(135deg,#FBB84D,#EE8A3C);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 16px 34px rgba(233,150,45,.34)}
+h1{font-family:var(--serif);font-size:64px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.tag{font-family:var(--serif);font-style:italic;color:var(--honey-deep)}
+.sub{color:var(--ink-2);font-size:18px;margin-top:14px}
+.pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:700;color:var(--ink-2)}
+
+section{padding:56px 0}
+h2{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.02em}
+h2 + p{color:var(--ink-2);font-size:15.5px;margin-top:8px;max-width:680px;line-height:1.6}
+.eyebrow{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--honey-deep);margin-bottom:10px}
+
+/* swatches */
+.grid{display:grid;gap:14px;margin-top:26px}
+.g5{grid-template-columns:repeat(5,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+@media(max-width:900px){.g5,.g4,.g3{grid-template-columns:repeat(2,1fr)}}
+.sw{border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--sh)}
+.sw .chip{height:88px}
+.sw .meta{padding:12px 14px}
+.sw .n{font-weight:800;font-size:13.5px}
+.sw .h{font-size:11.5px;color:var(--ink-3);font-family:ui-monospace,monospace;margin-top:2px}
+
+/* type */
+.type{background:#fff;border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:var(--sh);margin-top:26px}
+.trow{display:flex;align-items:baseline;gap:20px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.trow:last-child{border:0}
+.tlabel{width:180px;flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+
+/* faces */
+.faces{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px}
+.face{text-align:center}
+.face .c{width:76px;height:76px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:var(--sh)}
+.face svg{width:100%;height:100%}
+.face span{display:block;margin-top:10px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+
+/* screens */
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px}
+@media(max-width:1000px){.shots{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.shots{grid-template-columns:1fr}}
+.shot{text-align:center}
+.shot img{width:100%;border-radius:22px;border:1px solid var(--line);box-shadow:var(--sh-lg);display:block;background:#fff}
+.shot b{display:block;margin-top:12px;font-size:13.5px}
+.shot em{display:block;color:var(--ink-2);font-size:12.5px;font-style:normal;margin-top:2px}
+
+footer{padding:60px 0 80px;text-align:center;color:var(--ink-3);font-size:13.5px}
+.divider{height:1px;background:var(--line);margin:8px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="mark">
+    <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z" fill="#ffffff33"/>
+      <path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z" fill="#ffffff33"/>
+      <path d="M12 20v-9"/>
+    </svg>
+  </div>
+  <h1>Mellow <span class="tag">design system</span></h1>
+  <p class="sub">Small moments. Steady momentum. — a warm, multi-hue language for an Android wellness app.</p>
+  <div class="pills">
+    <span class="pill">Fraunces + Plus Jakarta Sans</span>
+    <span class="pill">5-point mood scale</span>
+    <span class="pill">Sprout mascot</span>
+    <span class="pill">2 home-screen widgets</span>
+    <span class="pill">Light &amp; dark</span>
+  </div>
+</header>
+
+<!-- ============ MOOD SCALE ============ -->
+<section>
+  <div class="eyebrow">Core palette</div>
+  <h2>The mood scale</h2>
+  <p>Every mood in the app — calendar cells, journal entries, charts, widgets — resolves to one of five colours. One scale, used everywhere, so a colour always means the same thing.</p>
+  <div class="grid g5">
+    <div class="sw"><div class="chip" style="background:var(--depressed)"></div><div class="meta"><div class="n">Depressed</div><div class="h">#A694F5</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sad)"></div><div class="meta"><div class="n">Sad</div><div class="h">#ED7E1C</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--neutral)"></div><div class="meta"><div class="n">Neutral</div><div class="h">#AEA194</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--happy)"></div><div class="meta"><div class="n">Happy</div><div class="h">#FFCE5C</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--overjoyed)"></div><div class="meta"><div class="n">Overjoyed</div><div class="h">#9BB068</div></div></div>
+  </div>
+</section>
+
+<!-- ============ FACES ============ -->
+<section>
+  <div class="eyebrow">Iconography</div>
+  <h2>Drawn faces, not emoji</h2>
+  <p>Five hand-built vector faces replace the emoji the app started with. They render identically on every device and carry their own colour, so no tinted backdrop is needed.</p>
+  <div class="faces" id="faces"></div>
+</section>
+
+<!-- ============ NEUTRALS + ACCENTS ============ -->
+<section>
+  <div class="eyebrow">Surfaces &amp; accents</div>
+  <h2>Warm neutrals, five accents</h2>
+  <p>A cream canvas instead of clinical white, warm ink instead of black, and one accent per feature — honey for coins, coral for breathing, sage for streaks, lavender for journal, sky for mood.</p>
+  <div class="grid g4">
+    <div class="sw"><div class="chip" style="background:#F7F3EC"></div><div class="meta"><div class="n">Canvas</div><div class="h">#F7F3EC</div></div></div>
+    <div class="sw"><div class="chip" style="background:#F1E9DD"></div><div class="meta"><div class="n">Canvas 2</div><div class="h">#F1E9DD</div></div></div>
+    <div class="sw"><div class="chip" style="background:#2B2621"></div><div class="meta"><div class="n">Ink</div><div class="h">#2B2621</div></div></div>
+    <div class="sw"><div class="chip" style="background:#8B8177"></div><div class="meta"><div class="n">Ink 2</div><div class="h">#8B8177</div></div></div>
+  </div>
+  <div class="grid g5" style="margin-top:14px">
+    <div class="sw"><div class="chip" style="background:var(--honey)"></div><div class="meta"><div class="n">Honey</div><div class="h">coins · brand</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--coral)"></div><div class="meta"><div class="n">Coral</div><div class="h">breathing</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sage)"></div><div class="meta"><div class="n">Sage</div><div class="h">streaks</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--lav)"></div><div class="meta"><div class="n">Lavender</div><div class="h">journal</div></div></div>
+    <div class="sw"><div class="chip" style="background:var(--sky)"></div><div class="meta"><div class="n">Sky</div><div class="h">mood</div></div></div>
+  </div>
+</section>
+
+<!-- ============ TYPE ============ -->
+<section>
+  <div class="eyebrow">Typography</div>
+  <h2>Fraunces &amp; Plus Jakarta Sans</h2>
+  <p>Both bundled as static weights in <code>res/font</code>, so exact weights render on every API level — no faux-bold, no platform fallback.</p>
+  <div class="type">
+    <div class="trow"><div class="tlabel">Display · Fraunces 600</div><div style="font-family:var(--serif);font-size:32px;font-weight:600">Good evening, Ayush</div></div>
+    <div class="trow"><div class="tlabel">Headline · Jakarta 800</div><div style="font-size:21px;font-weight:800">Today's tools</div></div>
+    <div class="trow"><div class="tlabel">Number · Jakarta 800</div><div style="font-size:27px;font-weight:800;letter-spacing:-.02em">248</div></div>
+    <div class="trow"><div class="tlabel">Body · Jakarta 400</div><div style="font-size:15px">Complete check-ins to fill your jar.</div></div>
+    <div class="trow"><div class="tlabel">Quote · Fraunces 400</div><div style="font-family:var(--serif);font-size:18px">What gave you a moment of calm today?</div></div>
+    <div class="trow"><div class="tlabel">Label · Jakarta 700</div><div style="font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)">Daily affirmation</div></div>
+  </div>
+</section>
+
+<!-- ============ SPROUT ============ -->
+<section>
+  <div class="eyebrow">Mascot</div>
+  <h2>Meet Sprout</h2>
+  <p>A calm meditating seedling, built as an Android <code>VectorDrawable</code> — no external art, no Lottie. Sprout appears in the breathing orb, the journal prompt, and empty states.</p>
+  <div style="display:flex;align-items:center;gap:40px;flex-wrap:wrap;margin-top:26px">
+    <div id="sprout" style="width:180px;height:180px"></div>
+    <div style="max-width:420px;color:var(--ink-2);font-size:15px;line-height:1.65">
+      Sprout is deliberately simple geometry — two leaves, a honey gradient body, closed eyes and a soft smile —
+      so it scales cleanly from a 44dp orb badge to a 128dp empty-state hero without ever rasterising.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ============ SCREENS ============ -->
+<section>
+  <div class="eyebrow">The app</div>
+  <h2>Every screen</h2>
+  <p>Real screenshots from the running app on an Android emulator.</p>
+
+  <h3 style="margin:34px 0 0;font-size:17px;font-weight:800">Onboarding</h3>
+  <div class="shots">
+    <div class="shot"><img src="../images/v2/signin.png" alt="Sign in"><b>Sign in</b><em>Glowing brand orb</em></div>
+    <div class="shot"><img src="../images/v2/onboard_name.png" alt="Name"><b>Name</b><em>Progress · back · skip</em></div>
+    <div class="shot"><img src="../images/v2/onboard_age.png" alt="Age"><b>Age</b><em>Snapping wheel picker</em></div>
+    <div class="shot"><img src="../images/v2/onboard_happy.png" alt="Happy things"><b>What makes you happy</b><em>Searchable tag cloud</em></div>
+  </div>
+
+  <h3 style="margin:40px 0 0;font-size:17px;font-weight:800">Daily loop</h3>
+  <div class="shots">
+    <div class="shot"><img src="../images/v2/home.png" alt="Home"><b>Home</b><em>Jar hero · streak · tools</em></div>
+    <div class="shot"><img src="../images/v2/checkin.png" alt="Check-in"><b>Check-in</b><em>Guided breathing</em></div>
+    <div class="shot"><img src="../images/v2/checkin_breathing.png" alt="Breathing"><b>Breathing</b><em>Fluid fill + Sprout</em></div>
+    <div class="shot"><img src="../images/v2/journal_entry.png" alt="Journal entry"><b>New entry</b><em>Prompt · date · mood</em></div>
+  </div>
+
+  <h3 style="margin:40px 0 0;font-size:17px;font-weight:800">Mood</h3>
+  <div class="shots">
+    <div class="shot"><img src="../images/v2/mood_calendar.png" alt="Mood calendar"><b>Calendar</b><em>A face per day</em></div>
+    <div class="shot"><img src="../images/v2/mood_list.png" alt="Mood list"><b>List</b><em>Date · mood · time</em></div>
+    <div class="shot"><img src="../images/v2/mood_overview.png" alt="Mood overview"><b>Overview</b><em>Spline + span tabs</em></div>
+    <div class="shot"><img src="../images/v2/mood_bubbles.png" alt="Mood bubbles"><b>Breakdown</b><em>Packed bubble chart</em></div>
+  </div>
+
+  <h3 style="margin:40px 0 0;font-size:17px;font-weight:800">Profile, buddies &amp; widgets</h3>
+  <div class="shots">
+    <div class="shot"><img src="../images/v2/profile.png" alt="Profile"><b>Profile</b><em>Honey hero · stat tiles</em></div>
+    <div class="shot"><img src="../images/v2/buddies.png" alt="Buddies"><b>Your circle</b><em>Sprout empty state</em></div>
+    <div class="shot"><img src="../images/v2/widget_stats.png" alt="Stats widget"><b>Stats widget</b><em>4×4 · bars + 7 days</em></div>
+    <div class="shot"><img src="../images/v2/journal.png" alt="Journal"><b>Journal</b><em>Prompt · insights</em></div>
+  </div>
+</section>
+
+<footer>
+  Mellow — designed &amp; built by Ayush Varma.
+</footer>
+</div>
+
+<script>
+const F = {
+  depressed:{c:'#A694F5', eyes:'x', mouth:'frown', label:'Depressed'},
+  sad:      {c:'#ED7E1C', eyes:'dot', mouth:'frown', label:'Sad'},
+  neutral:  {c:'#AEA194', eyes:'dot', mouth:'flat', label:'Neutral'},
+  happy:    {c:'#FFCE5C', eyes:'dot', mouth:'smile', label:'Happy'},
+  overjoyed:{c:'#9BB068', eyes:'arch', mouth:'big', label:'Overjoyed'}
+};
+const EYES = {
+  dot:'<circle cx="17.5" cy="18" r="2.3" fill="#3A2E23"/><circle cx="30.5" cy="18" r="2.3" fill="#3A2E23"/>',
+  arch:'<path d="M14 20 C15.6 17 19.4 17 21 20 M27 20 C28.6 17 32.4 17 34 20" stroke="#3A2E23" stroke-width="2.6" fill="none" stroke-linecap="round"/>',
+  x:'<path d="M14.5 15.5 L19.5 20.5 M19.5 15.5 L14.5 20.5 M28.5 15.5 L33.5 20.5 M33.5 15.5 L28.5 20.5" stroke="#3A2E23" stroke-width="2.6" stroke-linecap="round"/>'
+};
+const MOUTH = {
+  frown:'<path d="M16 32 C19.5 27 28.5 27 32 32" stroke="#3A2E23" stroke-width="2.8" fill="none" stroke-linecap="round"/>',
+  flat:'<path d="M18 30 L30 30" stroke="#3A2E23" stroke-width="2.8" stroke-linecap="round"/>',
+  smile:'<path d="M16 29 C19.5 34 28.5 34 32 29" stroke="#3A2E23" stroke-width="2.8" fill="none" stroke-linecap="round"/>',
+  big:'<path d="M15 28 C18 36 30 36 33 28 Z" fill="#3A2E23"/>'
+};
+document.getElementById('faces').innerHTML = Object.values(F).map(f => `
+  <div class="face">
+    <div class="c" style="background:${f.c}">
+      <svg viewBox="0 0 48 48">${EYES[f.eyes]}${MOUTH[f.mouth]}</svg>
+    </div><span>${f.label}</span>
+  </div>`).join('');
+
+document.getElementById('sprout').innerHTML = `
+<svg viewBox="0 0 120 122" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+  <defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FBD48F"/><stop offset="1" stop-color="#F2A63E"/></linearGradient></defs>
+  <ellipse cx="60" cy="114" rx="28" ry="5" fill="#000" opacity=".06"/>
+  <path d="M60 50 V37" stroke="#6FB08A" stroke-width="4" stroke-linecap="round"/>
+  <path d="M60 41c-3-8-12-9.5-16.5-7.5 1 8.5 9 11.5 16.5 7.5Z" fill="#7FC199"/>
+  <path d="M60 39c3-7.5 11-8.5 15.5-5.5-2 8-9.5 10.5-15.5 5.5Z" fill="#6FB08A"/>
+  <ellipse cx="60" cy="81" rx="33" ry="34" fill="url(#b)"/>
+  <ellipse cx="60" cy="89" rx="21" ry="19" fill="#FFF1D4" opacity=".6"/>
+  <circle cx="41" cy="85" r="4.2" fill="#F1885B" opacity=".5"/>
+  <circle cx="79" cy="85" r="4.2" fill="#F1885B" opacity=".5"/>
+  <path d="M40 78c2.2 3 6.3 3 8.5 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M71.5 78c2.2 3 6.3 3 8.5 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M53 89c3.6 3.3 10.8 3.3 14.4 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+</svg>`;
+</script>
+</body></html>

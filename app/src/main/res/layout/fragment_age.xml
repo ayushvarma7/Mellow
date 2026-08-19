@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="26dp"
+    android:paddingEnd="26dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's your age?"
+        android:textAppearance="@style/TextAppearance.Mellow.Display"
+        android:textSize="32sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- highlight pill sits behind the centred item -->
+        <View
+            android:layout_width="150dp"
+            android:layout_height="88dp"
+            android:layout_gravity="center"
+            android:background="@drawable/shape_pill"
+            android:backgroundTint="@color/mood_overjoyed" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAge"
+            android:layout_width="match_parent"
+            android:layout_height="380dp"
+            android:layout_gravity="center"
+            android:overScrollMode="never"
+            android:clipToPadding="false" />
+    </FrameLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAgeContinue"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/jakarta_bold"
+        android:backgroundTint="@color/mellow_ink"
+        app:icon="@drawable/ic_chevron_right"
+        app:iconGravity="textEnd"
+        app:iconTint="@color/white"
+        app:cornerRadius="20dp" />
+</LinearLayout>

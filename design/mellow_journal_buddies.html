@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mellow — Journal & Buddies (v2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F7F3EC; --canvas-2:#F1E9DD; --surface:#FFFFFF; --surface-warm:#FFFDF9;
+  --ink:#2B2621; --ink-2:#8B8177; --ink-3:#B9AFA4; --line:#ECE4D8;
+  --honey:#F4A63C; --honey-deep:#E0891F; --honey-soft:#FBEBCB;
+  --coral:#F1885B; --coral-deep:#E56B3B; --coral-soft:#FBDFD1;
+  --sage:#6FB08A; --sage-deep:#4E9169; --sage-soft:#DBEBDF;
+  --lav:#8E82CE;  --lav-deep:#6E60B8;  --lav-soft:#E7E2F6;
+  --sky:#5EA6D9;  --sky-deep:#3F8AC4;  --sky-soft:#D8EAF6;
+  --sh-sm:0 2px 8px rgba(120,92,58,.06);
+  --sh:0 12px 30px rgba(120,92,58,.12),0 3px 8px rgba(120,92,58,.06);
+  --sh-lg:0 20px 50px rgba(120,92,58,.18);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
+}
+.dark{
+  --canvas:#141319; --canvas-2:#1B1A22; --surface:#201F29; --surface-warm:#242330;
+  --ink:#F3EEE7; --ink-2:#A79E95; --ink-3:#6E6860; --line:#2C2A36;
+  --honey-soft:#3a2f1c; --coral-soft:#3a271e; --sage-soft:#22322a; --lav-soft:#282540; --sky-soft:#1f2c3a;
+  --sh-sm:0 2px 8px rgba(0,0,0,.3); --sh:0 14px 34px rgba(0,0,0,.45); --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:radial-gradient(1100px 700px at 12% -5%,#efe4d3,transparent 55%),radial-gradient(1000px 800px at 100% 0,#f3e7e0,transparent 50%),#eee6da;color:#2B2621;padding:40px 22px 80px}
+h1.title{font-family:var(--serif);font-weight:600;font-size:40px;letter-spacing:-.02em;margin-bottom:6px}
+h1.title span{font-style:italic;color:#E08E22}
+.sub{color:#7a6f62;font-size:15px;max-width:720px;line-height:1.55;margin-bottom:24px}
+.toggle{position:fixed;top:20px;right:22px;z-index:99;display:flex;gap:6px;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--sh);border:1px solid #eadfce}
+.toggle button{border:none;background:none;padding:8px 15px;border-radius:999px;font-family:var(--font);font-weight:700;font-size:13px;color:#8a7f70;cursor:pointer}
+.toggle button.on{background:#2B2621;color:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:40px 30px;justify-content:center;align-items:flex-start}
+.col{display:flex;flex-direction:column;align-items:center;gap:12px;max-width:340px}
+.cap{font-size:13px;font-weight:800;color:#4a4038}
+.capd{font-size:12px;color:#8a7f70;text-align:center;line-height:1.5;max-width:320px}
+.new{display:inline-block;background:#E56B3B;color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.06em;padding:2px 7px;border-radius:999px;margin-left:6px}
+
+.phone{width:340px;height:736px;border-radius:46px;background:#111;padding:10px;box-shadow:var(--sh-lg);flex:0 0 auto}
+.screen{width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:var(--canvas);color:var(--ink);font-size:14px}
+.sb{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:13px;font-weight:700;color:var(--ink);z-index:40}
+.view{position:absolute;inset:0;overflow-y:auto;padding:52px 18px 24px}.view::-webkit-scrollbar{display:none}
+.ic{stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.appbar{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.appbar .b{width:38px;height:38px;border-radius:12px;background:var(--canvas-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.appbar .b svg{width:19px;height:19px}
+.appbar h2{font-family:var(--serif);font-size:23px;font-weight:600;flex:1}
+.label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-sm)}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:16px;font-weight:800;font-size:14px;cursor:pointer}
+.btn-coral{background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;box-shadow:0 10px 20px rgba(238,124,67,.34)}
+.av{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;flex:0 0 auto}
+.a-h{background:linear-gradient(140deg,#F5B24E,#EE7C43)}.a-s{background:linear-gradient(140deg,#78C39B,#5EA6D9)}.a-l{background:linear-gradient(140deg,#A79CDF,#8E82CE)}.a-k{background:linear-gradient(140deg,#5EA6D9,#3F8AC4)}.a-c{background:linear-gradient(140deg,#F3A17A,#E56B3B)}
+.dotstrip{display:flex;gap:5px}.dotstrip i{width:9px;height:9px;border-radius:50%;background:var(--line)}.dotstrip i.on{background:var(--sage)}.dotstrip i.today{background:var(--honey);box-shadow:0 0 0 3px var(--honey-soft)}
+.weather{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px}
+.section{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 12px}.section h3{font-size:16px;font-weight:800}.section a{font-size:12.5px;font-weight:700;color:var(--honey-deep)}
+.face{border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.field{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:13px 15px;font-size:13.5px;color:var(--ink-2)}
+.chip{font-size:12px;font-weight:700;padding:7px 13px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2)}
+.chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.scrim{position:absolute;inset:0;background:rgba(30,20,10,.5);display:flex;align-items:flex-end;z-index:50}
+.sheet{background:var(--surface-warm);border-radius:28px 28px 0 0;box-shadow:var(--sh-lg);padding:20px 20px 26px;width:100%}
+.dark .sheet{background:#242330}
+.handle{width:40px;height:4px;border-radius:999px;background:var(--ink-3);opacity:.5;margin:0 auto 16px}
+.mascot{display:inline-block;animation:bob 4.5s ease-in-out infinite}
+.mascot svg{width:100%;height:100%;display:block}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+</style></head>
+<body>
+<svg width="0" height="0" style="position:absolute"><defs>
+  <linearGradient id="mBody" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FBD48F"/><stop offset="1" stop-color="#F2A63E"/>
+  </linearGradient>
+</defs></svg>
+<div class="toggle"><button id="tl" class="on" onclick="setMode('light')">☀︎ Light</button><button id="td" onclick="setMode('dark')">☾ Dark</button></div>
+
+<h1 class="title">Journal &amp; Buddies, <span>elevated</span></h1>
+<p class="sub">Dribbble-informed: a social <b>activity feed</b> + comparative stat for Buddies (from habit/alarm-social apps), an inviting <b>empty state</b>, an <b>aurora prompt</b> and AI reflections for Journal, and a redesigned <b>entry sheet</b> — no more emoji faces.</p>
+
+<div class="grid" id="grid">
+
+<!-- ========== 1. BUDDIES — CIRCLE (populated) ========== -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="b"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+      <h2>Your circle</h2>
+      <div class="b" style="background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff"><svg class="ic" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div>
+    </div>
+
+    <!-- streak hero -->
+    <div style="border-radius:24px;padding:18px;background:linear-gradient(135deg,#FBB84D,#EE8A3C);box-shadow:0 14px 30px rgba(233,150,45,.32);color:#fff">
+      <div style="display:flex;align-items:center;gap:10px">
+        <svg viewBox="0 0 24 24" style="width:26px;height:26px" fill="#fff"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>
+        <div style="font-size:30px;font-weight:800;line-height:1">12<span style="font-size:14px;font-weight:700"> days</span></div>
+        <div style="margin-left:auto;display:flex">
+          <div class="av a-s" style="width:30px;height:30px;font-size:11px;border:2px solid #fff">J</div>
+          <div class="av a-l" style="width:30px;height:30px;font-size:11px;border:2px solid #fff;margin-left:-8px">S</div>
+          <div class="av a-k" style="width:30px;height:30px;font-size:11px;border:2px solid #fff;margin-left:-8px">M</div>
+        </div>
+      </div>
+      <div style="font-size:13px;font-weight:700;margin-top:8px;opacity:.95">Circle streak — everyone checked in today 🌿</div>
+      <div style="height:7px;border-radius:999px;background:rgba(255,255,255,.3);margin-top:12px;overflow:hidden"><i style="display:block;height:100%;width:86%;background:#fff;border-radius:999px"></i></div>
+      <div style="font-size:11px;font-weight:700;opacity:.9;margin-top:6px">18 / 21 check-ins this week</div>
+    </div>
+
+    <!-- comparative stat -->
+    <div class="card" style="padding:14px 16px;margin-top:12px;background:var(--sage-soft);border-color:transparent">
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg class="ic" viewBox="0 0 24 24" style="width:19px;height:19px;color:var(--sage-deep)"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg>
+        <div style="font-size:13px;font-weight:700;color:var(--sage-deep);line-height:1.35">You've been calmer than <b>68%</b> of your circle this week</div>
+      </div>
+    </div>
+
+    <div class="section"><h3>Buddies</h3><a>Requests · 1</a></div>
+
+    <div class="card" style="padding:13px;margin-bottom:10px">
+      <div style="display:flex;align-items:center;gap:11px">
+        <div class="av a-s" style="width:42px;height:42px;border-radius:14px;font-size:15px">J</div>
+        <div style="flex:1"><div style="font-weight:800;font-size:14px">@jollyplum576</div>
+          <span class="weather" style="background:var(--sage-soft);color:var(--sage-deep);margin-top:2px"><svg viewBox="0 0 24 24" style="width:12px;height:12px" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M4 12H2M22 12h-2M6 6l1 1M17 17l1 1M18 6l-1 1M7 17l-1 1"/></svg>calm</span></div>
+        <div style="display:flex;align-items:center;gap:4px;color:var(--coral-deep);font-weight:800;font-size:13px"><svg viewBox="0 0 24 24" style="width:14px;height:14px" fill="currentColor"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>5</div>
+      </div>
+      <div class="dotstrip" style="margin:12px 0 11px"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i class="on"></i><i class="on"></i><i class="today"></i></div>
+      <div style="display:flex;gap:8px">
+        <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink);padding:10px"><svg viewBox="0 0 24 24" style="width:15px;height:15px" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.5 21a1.5 1.5 0 0 0 3 0"/></svg>Nudge</div>
+        <div class="btn btn-coral" style="flex:1.4;padding:10px"><svg viewBox="0 0 24 24" style="width:15px;height:15px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg>Breathe together</div>
+      </div>
+    </div>
+
+    <div class="section"><h3>Activity</h3></div>
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div style="display:flex;align-items:center;gap:11px;padding:9px 2px">
+        <div class="av a-s" style="width:36px;height:36px;font-size:13px">J</div>
+        <div style="flex:1;font-size:12.5px;color:var(--ink)"><b>Jolly</b> finished a breathing check-in<div style="color:var(--ink-3);font-size:11px;margin-top:1px">2h ago</div></div>
+        <div class="face" style="width:30px;height:30px;background:var(--coral-soft)"><svg viewBox="0 0 24 24" style="width:17px;height:17px" fill="none" stroke="var(--coral-deep)" stroke-width="2"><path d="M12 21s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z"/></svg></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:9px 2px">
+        <div class="av a-l" style="width:36px;height:36px;font-size:13px">S</div>
+        <div style="flex:1;font-size:12.5px;color:var(--ink)"><b>Swift</b> hit a 5-day streak 🔥<div style="color:var(--ink-3);font-size:11px;margin-top:1px">5h ago</div></div>
+        <div class="chip" style="background:var(--honey-soft);color:var(--honey-deep);border-color:transparent">Cheer</div>
+      </div>
+      <div style="display:flex;align-items:center;gap:11px;padding:9px 2px">
+        <div class="av a-k" style="width:36px;height:36px;font-size:13px">M</div>
+        <div style="flex:1;font-size:12.5px;color:var(--ink)"><b>Maple</b> sent you a calm 💛<div style="color:var(--ink-3);font-size:11px;margin-top:1px">1d ago</div></div>
+        <div class="chip" style="background:var(--lav-soft);color:var(--lav-deep);border-color:transparent">Reply</div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Buddies → Circle <span class="new">v2</span></div>
+<div class="capd">Adds a comparative stat and a social activity feed with cheer/reply/reactions, on top of the co-op streak &amp; buddy cards.</div>
+</div>
+
+<!-- ========== 2. BUDDIES — EMPTY STATE ========== -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="display:flex;flex-direction:column">
+    <div class="appbar">
+      <div class="b"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+      <h2>Your circle</h2>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-bottom:20px">
+      <div style="position:relative;width:220px;height:172px;margin-bottom:14px">
+        <div class="mascot" style="width:150px;height:150px;position:absolute;left:35px;top:12px"></div>
+        <div class="av a-l" style="width:42px;height:42px;border-radius:15px;position:absolute;left:0;top:26px;opacity:.85;font-size:15px">?</div>
+        <div class="av a-s" style="width:36px;height:36px;border-radius:13px;position:absolute;right:4px;top:6px;opacity:.8;font-size:13px">?</div>
+        <div class="av a-k" style="width:32px;height:32px;border-radius:12px;position:absolute;right:20px;bottom:8px;opacity:.75;font-size:12px">?</div>
+      </div>
+      <div style="font-family:var(--serif);font-size:24px;font-weight:600">Your circle is quiet</div>
+      <div style="color:var(--ink-2);font-size:13.5px;line-height:1.5;font-weight:600;max-width:250px;margin-top:8px">Add a buddy to share streaks, send a calm, and breathe together.</div>
+
+      <div style="display:flex;gap:8px;margin-top:20px">
+        <div class="chip" style="background:var(--sage-soft);color:var(--sage-deep);border-color:transparent">Shared streaks</div>
+        <div class="chip" style="background:var(--coral-soft);color:var(--coral-deep);border-color:transparent">Breathe together</div>
+      </div>
+    </div>
+
+    <div class="btn btn-coral" style="padding:16px;border-radius:18px;font-size:15px">
+      <svg viewBox="0 0 24 24" style="width:19px;height:19px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg>
+      Invite a buddy
+    </div>
+    <div style="text-align:center;color:var(--ink-2);font-size:12.5px;font-weight:700;margin-top:14px">or share your invite link</div>
+  </div>
+</div></div>
+<div class="cap">Buddies → empty state <span class="new">v2</span></div>
+<div class="capd">Replaces the bare "No buddies yet" text with an inviting, illustrated first-run screen.</div>
+</div>
+
+<!-- ========== 3. JOURNAL — REFLECTIONS ========== -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view">
+    <div class="appbar">
+      <div class="b"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div>
+      <h2>Journal</h2>
+      <div class="b" style="background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff"><svg class="ic" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div>
+    </div>
+
+    <!-- aurora prompt hero -->
+    <div style="border-radius:22px;padding:18px;position:relative;overflow:hidden;background:
+        radial-gradient(120px 90px at 18% 15%, #E7E2F6, transparent 70%),
+        radial-gradient(150px 120px at 92% 8%, #FBDFD1, transparent 70%),
+        radial-gradient(170px 140px at 75% 105%, #D8EAF6, transparent 70%),
+        #F4EFFA">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <div class="label" style="color:var(--lav-deep)">Today's prompt</div>
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;color:var(--lav-deep)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M21 3l-8 8M8 21H3v-5M3 21l8-8"/></svg>
+      </div>
+      <div style="font-family:var(--serif);font-size:20px;font-weight:500;line-height:1.3;color:var(--ink);margin-top:8px">What's one small thing that gave you a moment of calm today?</div>
+      <div class="btn" style="background:var(--lav);color:#fff;padding:12px;margin-top:14px;width:62%">Start writing</div>
+      <div class="mascot" style="width:84px;height:84px;position:absolute;right:0;bottom:-16px;animation:none;opacity:.96"></div>
+    </div>
+
+    <!-- insight strip -->
+    <div style="display:flex;gap:9px;margin-top:14px">
+      <div class="card" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800">12</div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">entries</div></div>
+      <div class="card" style="flex:1;padding:12px;text-align:center"><div style="font-size:20px;font-weight:800;color:var(--coral-deep)">3🔥</div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">day streak</div></div>
+      <div class="card" style="flex:1;padding:12px;text-align:center;display:flex;flex-direction:column;align-items:center"><div class="face" style="width:24px;height:24px;background:var(--sage-soft);margin-bottom:2px"><svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10.5px;color:var(--ink-2);font-weight:700">mostly calm</div></div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin:16px 0 12px;overflow:hidden"><span class="chip on">All</span><span class="chip">Calm</span><span class="chip">Great</span><span class="chip">Low</span></div>
+
+    <div class="card" style="padding:16px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--honey-deep);font-weight:800;font-size:11.5px">TODAY · 1:06 PM</span>
+        <div class="face" style="width:32px;height:32px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" style="width:20px;height:20px" fill="none" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="font-weight:800;font-size:15.5px;margin-top:9px">Does this help? I think yes</div>
+      <div style="color:var(--ink-2);font-size:13px;line-height:1.5;margin-top:4px">It really helps me with my well-being when I write my thoughts out.</div>
+      <div style="display:flex;gap:9px;align-items:flex-start;background:var(--lav-soft);border-radius:14px;padding:11px 12px;margin-top:12px">
+        <svg viewBox="0 0 24 24" style="width:16px;height:16px;flex:0 0 auto;margin-top:1px" fill="var(--lav-deep)"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+        <div style="font-size:12px;color:var(--lav-deep);line-height:1.45;font-weight:600">Reflection · Writing seems to be a grounding ritual for you — keep leaning on it.</div>
+      </div>
+    </div>
+
+    <div class="card" style="padding:14px;display:flex;align-items:center;gap:11px;background:var(--honey-soft);border-color:transparent">
+      <svg viewBox="0 0 24 24" style="width:22px;height:22px;color:var(--honey-deep)" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 2"/><circle cx="12" cy="12" r="9"/></svg>
+      <div style="flex:1"><div style="font-weight:800;font-size:13px;color:var(--honey-deep)">On this day · 1 month ago</div><div style="font-size:12px;color:var(--ink-2);font-weight:600">"First journal — happy to get started"</div></div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Journal → Reflections <span class="new">v2</span></div>
+<div class="capd">Aurora prompt hero, journaling insights, mood filters, drawn-face moods, per-entry AI reflection, and "on this day".</div>
+</div>
+
+<!-- ========== 4. JOURNAL — NEW ENTRY SHEET ========== -->
+<div class="col">
+<div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="opacity:.3"></div>
+  <div class="scrim">
+    <div class="sheet">
+      <div class="handle"></div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <div style="font-family:var(--serif);font-size:21px;font-weight:600">New entry</div>
+        <div style="font-size:11.5px;font-weight:700;color:var(--ink-3)">Wed, Aug 20</div>
+      </div>
+
+      <!-- prompt chip -->
+      <div style="display:flex;align-items:center;gap:8px;background:var(--lav-soft);border-radius:12px;padding:10px 12px;margin-bottom:12px">
+        <svg viewBox="0 0 24 24" style="width:15px;height:15px;flex:0 0 auto" fill="var(--lav-deep)"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+        <div style="font-size:12px;color:var(--lav-deep);font-weight:700;flex:1">What gave you a moment of calm?</div>
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;color:var(--lav-deep)" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5"/></svg>
+      </div>
+
+      <div class="field" style="margin-bottom:10px">Title (optional)</div>
+      <div class="field" style="height:88px;margin-bottom:16px">Write freely…</div>
+
+      <div style="font-size:12px;font-weight:800;color:var(--ink-2);margin-bottom:10px">How are you feeling?</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:18px">
+        <div class="face" style="width:44px;height:44px;background:var(--coral-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral-deep)" stroke-width="1.7" stroke-linecap="round" style="width:26px;height:26px"><path d="M8.5 16q3.5-2.2 7 0M9.3 10v.8M14.7 10v.8"/></svg></div>
+        <div class="face" style="width:44px;height:44px;background:var(--honey-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)" stroke-width="1.7" stroke-linecap="round" style="width:26px;height:26px"><path d="M8.5 15.4q3.5-1.2 7 0M9.3 10v.8M14.7 10v.8"/></svg></div>
+        <div class="face" style="width:44px;height:44px;background:var(--canvas-2)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" stroke-width="1.7" stroke-linecap="round" style="width:26px;height:26px"><path d="M9 15h6M9.3 10v.8M14.7 10v.8"/></svg></div>
+        <div class="face" style="width:44px;height:44px;background:var(--sky-soft);outline:2.5px solid var(--sky);outline-offset:2px"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky-deep)" stroke-width="1.7" stroke-linecap="round" style="width:26px;height:26px"><path d="M8.5 14.6q3.5 2 7 0M9.3 10v.8M14.7 10v.8"/></svg></div>
+        <div class="face" style="width:44px;height:44px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.7" stroke-linecap="round" style="width:26px;height:26px"><path d="M8 14q4 3.5 8 0M9.3 10v.8M14.7 10v.8"/></svg></div>
+      </div>
+
+      <div style="display:flex;gap:10px">
+        <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink-2);padding:15px">Cancel</div>
+        <div class="btn btn-coral" style="flex:1.7;padding:15px;font-size:14.5px">
+          <svg viewBox="0 0 24 24" style="width:16px;height:16px" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+          Save · +10 coins
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">Journal → new entry sheet <span class="new">v2</span></div>
+<div class="capd">Replaces the emoji-face dialog: a bottom sheet with a prompt chip, clean fields, drawn faces, and a coin-reward save.</div>
+</div>
+
+</div>
+<script>
+function setMode(m){document.getElementById('tl').classList.toggle('on',m==='light');document.getElementById('td').classList.toggle('on',m==='dark');document.querySelectorAll('#grid .sc').forEach(s=>s.classList.toggle('dark',m==='dark'));}
+const MASCOT = `<svg viewBox="0 0 120 122" xmlns="http://www.w3.org/2000/svg">
+  <ellipse cx="60" cy="114" rx="28" ry="5" fill="#000000" opacity="0.06"/>
+  <path d="M60 50 V37" stroke="#6FB08A" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M60 41c-3-8-12-9.5-16.5-7.5 1 8.5 9 11.5 16.5 7.5Z" fill="#7FC199"/>
+  <path d="M60 39c3-7.5 11-8.5 15.5-5.5-2 8-9.5 10.5-15.5 5.5Z" fill="#6FB08A"/>
+  <ellipse cx="60" cy="81" rx="33" ry="34" fill="url(#mBody)"/>
+  <ellipse cx="60" cy="89" rx="21" ry="19" fill="#FFF1D4" opacity="0.6"/>
+  <circle cx="41" cy="85" r="4.2" fill="#F1885B" opacity="0.5"/>
+  <circle cx="79" cy="85" r="4.2" fill="#F1885B" opacity="0.5"/>
+  <path d="M40 78c2.2 3 6.3 3 8.5 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M71.5 78c2.2 3 6.3 3 8.5 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+  <path d="M53 89c3.6 3.3 10.8 3.3 14.4 0" stroke="#3A322C" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+</svg>`;
+document.querySelectorAll('.mascot').forEach(el => el.innerHTML = MASCOT);
+</script>
+</body></html>

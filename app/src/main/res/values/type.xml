@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         MELLOW TYPE SCALE
+         Fraunces (serif display / brand) + Plus Jakarta Sans (UI).
+         Both are bundled in res/font as static weights, so exact
+         weights render on every API level (minSdk 26).
+         ============================================================ -->
+
+    <!-- Display: serif greeting / wordmark -->
+    <style name="TextAppearance.Mellow.Display" parent="TextAppearance.Material3.HeadlineMedium">
+        <item name="android:fontFamily">@font/fraunces_semibold</item>
+        <item name="fontFamily">@font/fraunces_semibold</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:letterSpacing">-0.015</item>
+    </style>
+
+    <!-- Headline: bold sans section / screen titles -->
+    <style name="TextAppearance.Mellow.Headline" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+        <item name="fontFamily">@font/jakarta_extrabold</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <!-- Title: card / row titles -->
+    <style name="TextAppearance.Mellow.Title" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+        <item name="fontFamily">@font/jakarta_bold</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <!-- Big number (coins / streak counts) -->
+    <style name="TextAppearance.Mellow.Number" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+        <item name="fontFamily">@font/jakarta_extrabold</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:letterSpacing">-0.02</item>
+    </style>
+
+    <!-- Body -->
+    <style name="TextAppearance.Mellow.Body" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">@font/jakarta_regular</item>
+        <item name="fontFamily">@font/jakarta_regular</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:lineSpacingMultiplier">1.35</item>
+    </style>
+
+    <!-- Serif body (affirmation quote) -->
+    <style name="TextAppearance.Mellow.Quote" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:fontFamily">@font/fraunces_regular</item>
+        <item name="fontFamily">@font/fraunces_regular</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">17.5sp</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <!-- Overline / label: uppercase tracked labels -->
+    <style name="TextAppearance.Mellow.Label" parent="TextAppearance.Material3.LabelMedium">
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+        <item name="fontFamily">@font/jakarta_bold</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <!-- Caption / secondary -->
+    <style name="TextAppearance.Mellow.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:fontFamily">@font/jakarta_regular</item>
+        <item name="fontFamily">@font/jakarta_regular</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">12.5sp</item>
+    </style>
+
+    <!-- Profile stat column helpers -->
+    <style name="ProfileStat">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="ProfileStatNum">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">26sp</item>
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+    </style>
+
+    <style name="ProfileStatLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">11.5sp</item>
+        <item name="android:layout_marginTop">2dp</item>
+    </style>
+
+    <!-- Mood calendar + picker helpers -->
+    <style name="CalWeekday">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/mellow_ink_3</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+
+    <style name="MoodPick">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">3dp</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@color/mellow_surface</item>
+    </style>
+
+    <style name="MoodPickInner">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">11dp</item>
+        <item name="android:paddingBottom">11dp</item>
+    </style>
+
+    <style name="MoodPickFace">
+        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_height">28dp</item>
+    </style>
+
+    <style name="MoodPickLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+        <item name="android:layout_marginTop">5dp</item>
+    </style>
+
+    <!-- Buddy weekly check dots -->
+    <style name="BuddyDotOn">
+        <item name="android:layout_width">9dp</item>
+        <item name="android:layout_height">9dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:background">@drawable/shape_oval</item>
+        <item name="android:backgroundTint">@color/mellow_sage</item>
+    </style>
+
+    <style name="BuddyDotOff">
+        <item name="android:layout_width">9dp</item>
+        <item name="android:layout_height">9dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:background">@drawable/shape_oval</item>
+        <item name="android:backgroundTint">@color/mellow_line</item>
+    </style>
+
+    <style name="BuddyDotToday">
+        <item name="android:layout_width">9dp</item>
+        <item name="android:layout_height">9dp</item>
+        <item name="android:layout_marginEnd">5dp</item>
+        <item name="android:background">@drawable/shape_oval</item>
+        <item name="android:backgroundTint">@color/mellow_honey</item>
+    </style>
+
+    <!-- Mood Overview span tabs (1 Day / 1 Week / ...) -->
+    <style name="SpanTab">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingTop">9dp</item>
+        <item name="android:paddingBottom">9dp</item>
+        <item name="android:textSize">12.5sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:background">@drawable/shape_pill</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Bubble chart legend entry -->
+    <style name="MoodLegend">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+        <item name="android:paddingTop">3dp</item>
+        <item name="android:paddingBottom">3dp</item>
+    </style>
+
+    <!-- Stats widget day column -->
+    <style name="WidgetDay">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WidgetDayFace">
+        <item name="android:layout_width">34dp</item>
+        <item name="android:layout_height">34dp</item>
+    </style>
+
+    <style name="WidgetDayLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">10.5sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+</resources>

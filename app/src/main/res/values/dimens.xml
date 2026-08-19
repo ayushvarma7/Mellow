@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Spacing scale -->
+    <dimen name="space_xs">4dp</dimen>
+    <dimen name="space_sm">8dp</dimen>
+    <dimen name="space_md">12dp</dimen>
+    <dimen name="space_lg">16dp</dimen>
+    <dimen name="space_xl">20dp</dimen>
+    <dimen name="space_2xl">24dp</dimen>
+    <dimen name="space_3xl">32dp</dimen>
+
+    <!-- Corner radii -->
+    <dimen name="radius_sm">14dp</dimen>
+    <dimen name="radius_md">20dp</dimen>
+    <dimen name="radius_lg">28dp</dimen>
+
+    <!-- Screen gutters -->
+    <dimen name="screen_gutter">22dp</dimen>
+
+    <!-- Bottom nav -->
+    <dimen name="nav_height">70dp</dimen>
+</resources>

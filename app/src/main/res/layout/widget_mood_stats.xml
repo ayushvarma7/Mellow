@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="16dp">
+
+    <!-- legend + range -->
+    <LinearLayout
+        android:id="@+id/statsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView android:layout_width="9dp" android:layout_height="9dp"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@color/mood_overjoyed"
+            android:contentDescription="Positive" />
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="6dp" android:text="Positive"
+            android:textColor="@color/mellow_ink" android:textSize="12.5sp"
+            android:fontFamily="@font/jakarta_bold" />
+
+        <ImageView android:layout_width="9dp" android:layout_height="9dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@color/mood_sad"
+            android:contentDescription="Negative" />
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginStart="6dp" android:text="Negative"
+            android:textColor="@color/mellow_ink" android:textSize="12.5sp"
+            android:fontFamily="@font/jakarta_bold" />
+
+        <ImageView android:layout_width="0dp" android:layout_height="1dp"
+            android:layout_weight="1" android:contentDescription="" />
+
+        <TextView
+            android:id="@+id/statsRange"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Weekly"
+            android:textColor="@color/mellow_ink" android:textSize="12sp"
+            android:fontFamily="@font/jakarta_bold"
+            android:background="@drawable/shape_pill"
+            android:backgroundTint="@color/mellow_canvas_2"
+            android:paddingStart="12dp" android:paddingEnd="12dp"
+            android:paddingTop="7dp" android:paddingBottom="7dp" />
+    </LinearLayout>
+
+    <!-- bar chart (rendered to a bitmap) -->
+    <ImageView
+        android:id="@+id/statsChart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="10dp"
+        android:scaleType="fitXY"
+        android:contentDescription="Mood chart" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/mellow_line"
+        android:contentDescription="" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mood History"
+        android:textColor="@color/mellow_ink"
+        android:textSize="15sp"
+        android:fontFamily="@font/jakarta_extrabold" />
+
+    <!-- last 7 days -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="7">
+
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day1Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day1Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day2Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day2Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day3Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day3Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day4Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day4Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day5Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day5Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day6Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day6Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+        <LinearLayout style="@style/WidgetDay">
+            <ImageView android:id="@+id/day7Face" style="@style/WidgetDayFace" />
+            <TextView  android:id="@+id/day7Label" style="@style/WidgetDayLabel" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

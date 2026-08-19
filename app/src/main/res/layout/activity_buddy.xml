@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mellow_canvas"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_gutter">
+
+        <!-- App bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="14dp">
+
+            <ImageButton
+                android:id="@+id/btn_back"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_close_x"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/mellow_ink"
+                android:contentDescription="Close" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Your circle"
+                android:textAppearance="@style/TextAppearance.Mellow.Display"
+                android:textSize="23sp"
+                android:layout_marginStart="6dp" />
+        </LinearLayout>
+
+        <!-- Circle extras (shown when you have buddies) -->
+        <LinearLayout
+            android:id="@+id/circle_extras"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <!-- streak hero -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/bg_hero_honey"
+                android:padding="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <ImageView android:layout_width="26dp" android:layout_height="26dp"
+                        android:src="@drawable/ic_flame" app:tint="@color/white"
+                        android:contentDescription="streak" />
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp" android:text="12 days"
+                        android:textColor="@color/white" android:textSize="26sp"
+                        android:fontFamily="@font/jakarta_extrabold" />
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:text="Circle streak — everyone checked in today"
+                    android:textColor="@color/white" android:textSize="13sp" android:alpha="0.95"
+                    android:fontFamily="@font/jakarta_bold" />
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp" android:text="18 / 21 check-ins this week"
+                    android:textColor="@color/white" android:textSize="11.5sp" android:alpha="0.9"
+                    android:fontFamily="@font/jakarta" />
+            </LinearLayout>
+
+            <!-- comparative stat -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_round_14"
+                android:backgroundTint="@color/mellow_sage_soft"
+                android:padding="14dp"
+                android:layout_marginTop="12dp">
+                <ImageView android:layout_width="20dp" android:layout_height="20dp"
+                    android:src="@drawable/ic_trophy" app:tint="@color/mellow_sage_deep"
+                    android:contentDescription="trend" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="You've been calmer than 68% of your circle this week"
+                    android:textColor="@color/mellow_sage_deep" android:textSize="12.5sp"
+                    android:fontFamily="@font/jakarta_bold" />
+            </LinearLayout>
+
+            <!-- activity feed -->
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Activity" android:textAppearance="@style/TextAppearance.Mellow.Label"
+                android:layout_marginStart="2dp" android:layout_marginTop="20dp" android:layout_marginBottom="6dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="8dp">
+                <FrameLayout android:layout_width="36dp" android:layout_height="36dp"
+                    android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_sage">
+                    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:gravity="center" android:text="J" android:textColor="@color/white"
+                        android:textSize="13sp" android:fontFamily="@font/jakarta_extrabold" /></FrameLayout>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginStart="11dp" android:text="Jolly finished a breathing check-in · 2h"
+                    android:textColor="@color/mellow_ink" android:textSize="12.5sp" android:fontFamily="@font/jakarta" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical" android:paddingVertical="8dp">
+                <FrameLayout android:layout_width="36dp" android:layout_height="36dp"
+                    android:background="@drawable/shape_oval" android:backgroundTint="@color/mellow_lav">
+                    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:gravity="center" android:text="S" android:textColor="@color/white"
+                        android:textSize="13sp" android:fontFamily="@font/jakarta_extrabold" /></FrameLayout>
+                <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                    android:layout_marginStart="11dp" android:text="Swift hit a 5-day streak · 5h"
+                    android:textColor="@color/mellow_ink" android:textSize="12.5sp" android:fontFamily="@font/jakarta" />
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/mellow_line" android:layout_marginVertical="14dp" />
+        </LinearLayout>
+
+        <!-- Add a buddy -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="16dp">
+
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Add a buddy" android:textAppearance="@style/TextAppearance.Mellow.Label"
+                android:layout_marginBottom="10dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="14dp" app:boxCornerRadiusTopEnd="14dp"
+                app:boxCornerRadiusBottomStart="14dp" app:boxCornerRadiusBottomEnd="14dp"
+                app:boxStrokeColor="@color/mellow_honey"
+                android:hint="their username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_buddy_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:fontFamily="@font/jakarta" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_send_request"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="12dp"
+                android:text="Send request"
+                android:textAllCaps="false"
+                android:textSize="14.5sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/jakarta_bold"
+                android:backgroundTint="@color/mellow_coral"
+                app:cornerRadius="16dp" />
+
+            <TextView
+                android:id="@+id/tv_send_result"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textSize="12.5sp"
+                android:fontFamily="@font/jakarta_bold" />
+        </LinearLayout>
+
+        <!-- Requests -->
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Requests" android:textAppearance="@style/TextAppearance.Mellow.Label"
+            android:layout_marginStart="2dp" android:layout_marginTop="22dp" android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_requests"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_no_requests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No pending requests"
+                android:textColor="@color/mellow_ink_2"
+                android:textSize="13.5sp"
+                android:fontFamily="@font/jakarta" />
+        </LinearLayout>
+
+        <!-- Your buddies -->
+        <TextView
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Your buddies" android:textAppearance="@style/TextAppearance.Mellow.Label"
+            android:layout_marginStart="2dp" android:layout_marginTop="22dp" android:layout_marginBottom="10dp" />
+
+        <LinearLayout
+            android:id="@+id/ll_buddies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <!-- Empty state -->
+        <LinearLayout
+            android:id="@+id/empty_circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="12dp"
+            android:paddingBottom="20dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="128dp"
+                android:layout_height="128dp"
+                android:src="@drawable/ic_sprout"
+                android:contentDescription="Sprout" />
+
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" android:text="Your circle is quiet"
+                android:textAppearance="@style/TextAppearance.Mellow.Display" android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:gravity="center"
+                android:text="Add a buddy above to share streaks, send a calm, and breathe together."
+                android:textColor="@color/mellow_ink_2" android:textSize="14sp"
+                android:fontFamily="@font/jakarta" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         MELLOW DESIGN SYSTEM v2 — "Warm Calm"  (DARK)
+         A calm deep-charcoal canvas with the same accent hues,
+         tuned for legibility on dark surfaces.
+         ============================================================ -->
+
+    <!--Canvas / surface / ink-->
+    <color name="mellow_canvas">#141319</color>
+    <color name="mellow_canvas_2">#1B1A22</color>
+    <color name="mellow_surface_warm">#242330</color>
+    <color name="mellow_ink">#F3EEE7</color>
+    <color name="mellow_ink_2">#A79E95</color>
+    <color name="mellow_ink_3">#6E6860</color>
+    <color name="mellow_line">#2C2A36</color>
+
+    <!--Accents (slightly brighter for dark)-->
+    <color name="mellow_honey">#F6B454</color>
+    <color name="mellow_honey_deep">#F4A63C</color>
+    <color name="mellow_honey_soft">#3A2F1C</color>
+
+    <color name="mellow_coral">#F49A72</color>
+    <color name="mellow_coral_deep">#F1885B</color>
+    <color name="mellow_coral_soft">#3A271E</color>
+
+    <color name="mellow_sage">#84C3A0</color>
+    <color name="mellow_sage_deep">#6FB08A</color>
+    <color name="mellow_sage_soft">#22322A</color>
+
+    <color name="mellow_lav">#A79CDF</color>
+    <color name="mellow_lav_deep">#8E82CE</color>
+    <color name="mellow_lav_soft">#282540</color>
+
+    <color name="mellow_sky">#7DBAE6</color>
+    <color name="mellow_sky_deep">#5EA6D9</color>
+    <color name="mellow_sky_soft">#1F2C3A</color>
+
+    <!-- Gradient stops (keep hero vivid on dark too) -->
+    <color name="mellow_honey_grad_a">#FBB84D</color>
+    <color name="mellow_honey_grad_b">#F49A34</color>
+    <color name="mellow_honey_grad_c">#EE8A3C</color>
+    <color name="mellow_coral_grad_a">#F49A34</color>
+    <color name="mellow_coral_grad_b">#EE7C43</color>
+    <color name="mellow_breathe_top">#2A2130</color>
+    <color name="mellow_breathe_mid">#241F2E</color>
+    <color name="mellow_breathe_bottom">#1A2030</color>
+
+    <!--Legacy token names remapped for dark-->
+    <color name="mellow_bg_dark">#141319</color>
+    <color name="mellow_bg_mid">#1B1A22</color>
+    <color name="mellow_accent_gold">#F6B454</color>
+    <color name="mellow_accent_soft">#F1885B</color>
+    <color name="mellow_text_primary">#F3EEE7</color>
+    <color name="mellow_text_secondary">#A79E95</color>
+    <color name="mellow_card_bg">#201F29</color>
+    <color name="mellow_button_bg">#F4A63C</color>
+    <color name="mellow_button_text">#201812</color>
+    <color name="mellow_streak_bg">#3A271E</color>
+    <color name="mellow_coin_gold">#F6B454</color>
+
+    <color name="mellow_background">#141319</color>
+    <color name="mellow_surface">#201F29</color>
+    <color name="mellow_primary">#F6B454</color>
+    <color name="mellow_primary_dark">#F4A63C</color>
+    <color name="mellow_divider">#2C2A36</color>
+    <color name="mellow_error">#E88A7D</color>
+</resources>

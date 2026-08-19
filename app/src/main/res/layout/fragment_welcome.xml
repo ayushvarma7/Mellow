@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mellow_canvas"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
+    android:paddingTop="64dp"
+    android:paddingBottom="32dp">
+
+    <!-- Hero -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <FrameLayout
+            android:layout_width="164dp"
+            android:layout_height="164dp"
+            android:background="@drawable/bg_orb"
+            android:layout_marginBottom="30dp">
+
+            <ImageView
+                android:layout_width="62dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_leaf"
+                app:tint="@color/mellow_coral_deep"
+                android:contentDescription="@string/app_name" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mellow"
+            android:textAppearance="@style/TextAppearance.Mellow.Display"
+            android:textSize="34sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="your daily moment of calm"
+            android:textAppearance="@style/TextAppearance.Mellow.Body"
+            android:textColor="@color/mellow_ink_2"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_get_started"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Get started"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        app:cornerRadius="18dp"
+        android:backgroundTint="@color/mellow_coral" />
+
+</LinearLayout>

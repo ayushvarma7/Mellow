@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mellow — All Screens Redesign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F7F3EC; --canvas-2:#F1E9DD; --surface:#FFFFFF; --surface-warm:#FFFDF9;
+  --ink:#2B2621; --ink-2:#8B8177; --ink-3:#B9AFA4; --line:#ECE4D8;
+  --honey:#F4A63C; --honey-deep:#E0891F; --honey-soft:#FBEBCB;
+  --coral:#F1885B; --coral-deep:#E56B3B; --coral-soft:#FBDFD1;
+  --sage:#6FB08A; --sage-deep:#4E9169; --sage-soft:#DBEBDF;
+  --lav:#8E82CE;  --lav-deep:#6E60B8;  --lav-soft:#E7E2F6;
+  --sky:#5EA6D9;  --sky-deep:#3F8AC4;  --sky-soft:#D8EAF6;
+  --sh-sm:0 2px 8px rgba(120,92,58,.06);
+  --sh:0 12px 30px rgba(120,92,58,.12),0 3px 8px rgba(120,92,58,.06);
+  --sh-lg:0 20px 50px rgba(120,92,58,.18);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif; --serif:'Fraunces',Georgia,serif;
+}
+.dark{
+  --canvas:#141319; --canvas-2:#1B1A22; --surface:#201F29; --surface-warm:#242330;
+  --ink:#F3EEE7; --ink-2:#A79E95; --ink-3:#6E6860; --line:#2C2A36;
+  --honey-soft:#3a2f1c; --coral-soft:#3a271e; --sage-soft:#22322a; --lav-soft:#282540; --sky-soft:#1f2c3a;
+  --sh-sm:0 2px 8px rgba(0,0,0,.3); --sh:0 14px 34px rgba(0,0,0,.45); --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font);background:radial-gradient(1100px 700px at 12% -5%,#efe4d3,transparent 55%),radial-gradient(1000px 800px at 100% 0,#f3e7e0,transparent 50%),#eee6da;color:#2B2621;padding:40px 22px 80px}
+h1.title{font-family:var(--serif);font-weight:600;font-size:40px;letter-spacing:-.02em;margin-bottom:6px}
+h1.title span{font-style:italic;color:#E08E22}
+.sub{color:#7a6f62;font-size:15px;max-width:680px;line-height:1.55;margin-bottom:24px}
+.toggle{position:fixed;top:20px;right:22px;z-index:99;display:flex;gap:6px;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--sh);border:1px solid #eadfce}
+.toggle button{border:none;background:none;padding:8px 15px;border-radius:999px;font-family:var(--font);font-weight:700;font-size:13px;color:#8a7f70;cursor:pointer}
+.toggle button.on{background:#2B2621;color:#fff}
+.grid{display:flex;flex-wrap:wrap;gap:34px 30px;justify-content:center;align-items:flex-start}
+.col{display:flex;flex-direction:column;align-items:center;gap:13px}
+.cap{font-size:12.5px;font-weight:700;color:#8a7f70}.cap b{color:#4a4038}
+
+/* phone */
+.phone{width:340px;height:722px;border-radius:46px;background:#111;padding:10px;box-shadow:var(--sh-lg);flex:0 0 auto}
+.screen{width:100%;height:100%;border-radius:37px;overflow:hidden;position:relative;background:var(--canvas);color:var(--ink);font-size:14px}
+.sb{position:absolute;top:0;left:0;right:0;height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:13px;font-weight:700;color:var(--ink);z-index:40}
+.view{position:absolute;inset:0;overflow:hidden;padding:52px 18px 20px}
+.view.scroll{overflow-y:auto}.view::-webkit-scrollbar{display:none}
+.ic{stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+
+/* shared bits */
+.appbar{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.appbar .back{width:38px;height:38px;border-radius:12px;background:var(--canvas-2);display:flex;align-items:center;justify-content:center;color:var(--ink)}
+.appbar .back svg{width:19px;height:19px}
+.appbar h2{font-family:var(--serif);font-size:22px;font-weight:600}
+.label{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--sh-sm)}
+.btn{display:flex;align-items:center;justify-content:center;gap:9px;border-radius:20px;font-weight:800;font-size:15.5px;cursor:pointer}
+.btn-coral{background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;padding:16px;box-shadow:0 12px 22px rgba(238,124,67,.36)}
+.btn-ghost{background:transparent;border:1.5px solid var(--coral-deep);color:var(--coral-deep);padding:15px}
+.avatar{border-radius:16px;background:linear-gradient(140deg,var(--lav),var(--sky));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800}
+.avatar.h{background:linear-gradient(140deg,#F5B24E,#EE7C43)}
+.avatar.s{background:linear-gradient(140deg,#78C39B,#5EA6D9)}
+
+/* face chips */
+.face{border-radius:50%;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.face svg{width:64%;height:64%}
+
+/* goal chip */
+.goal{border:1.5px solid var(--line);background:var(--surface);border-radius:18px;padding:15px 14px;display:flex;flex-direction:column;gap:10px;font-weight:800;font-size:13.5px;color:var(--ink);min-height:78px;justify-content:space-between}
+.goal .gi{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center}
+.goal .gi svg{width:18px;height:18px}
+.goal.sel{border-color:transparent}
+.goal.h{background:var(--honey-soft)}.goal.h .gi{background:#fff6}.goal.h.sel{background:var(--honey);color:#fff}
+.goal.c{background:var(--coral-soft)} .goal.l{background:var(--lav-soft)} .goal.s{background:var(--sage-soft)} .goal.k{background:var(--sky-soft)}
+.goal.sel.c{background:var(--coral);color:#fff}.goal.sel.l{background:var(--lav);color:#fff}.goal.sel.s{background:var(--sage);color:#fff}.goal.sel.k{background:var(--sky);color:#fff}
+
+/* dots */
+.dots{display:flex;gap:7px;justify-content:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--ink-3);opacity:.4}
+.dots i.on{opacity:1;background:var(--honey);width:20px;border-radius:999px}
+
+/* input */
+.field{background:var(--surface);border:1.5px solid var(--line);border-radius:16px;padding:14px 15px;font-size:14px;color:var(--ink-2)}
+
+/* dialog */
+.scrim{position:absolute;inset:0;background:rgba(30,20,10,.45);display:flex;align-items:center;justify-content:center;padding:20px;z-index:50}
+.modal{background:var(--surface-warm);border-radius:26px;box-shadow:var(--sh-lg);padding:22px;width:100%}
+.dark .modal{background:#242330}
+
+.md{padding:6px 0;border-radius:50%;position:relative}
+.md::before{content:"";position:absolute;inset:2px;border-radius:50%;background:var(--m);opacity:.32;z-index:-1}
+.md.today{background:transparent;color:#fff}
+.md.today::before{inset:2px;background:var(--honey);opacity:1}
+</style></head>
+<body>
+<div class="toggle"><button id="tl" class="on" onclick="setMode('light')">☀︎ Light</button><button id="td" onclick="setMode('dark')">☾ Dark</button></div>
+
+<h1 class="title">All screens, <span>reimagined</span></h1>
+<p class="sub">Every remaining page in the same “Warm Calm” language — real icons, multi-hue pastels, serif display type, soft cards, and working light/dark. Approve this and I’ll build each one in Android exactly like Home &amp; Breathing.</p>
+
+<div class="grid" id="grid">
+
+<!-- SPLASH -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+    <div style="width:96px;height:96px;border-radius:30px;background:linear-gradient(135deg,#FBB84D,#EE8A3C);display:flex;align-items:center;justify-content:center;box-shadow:0 16px 34px rgba(233,150,45,.34);margin-bottom:26px">
+      <svg viewBox="0 0 24 24" style="width:46px;height:46px" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z" fill="#ffffff33"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z" fill="#ffffff33"/><path d="M12 20v-9"/></svg>
+    </div>
+    <div style="font-family:var(--serif);font-size:44px;font-weight:600;letter-spacing:-.02em">Mellow</div>
+    <div style="color:var(--ink-2);font-size:14.5px;margin-top:8px;font-weight:600">Small moments. Steady momentum.</div>
+  </div>
+</div></div><div class="cap"><b>Splash</b></div></div>
+
+<!-- SIGN IN -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="display:flex;flex-direction:column">
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">
+      <div style="width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fff,#FFE6D3);box-shadow:0 0 50px 10px rgba(255,220,190,.7),0 16px 40px rgba(224,150,90,.25);display:flex;align-items:center;justify-content:center;margin-bottom:28px">
+        <svg viewBox="0 0 24 24" style="width:52px;height:52px" fill="none" stroke="#E56B3B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg>
+      </div>
+      <div style="font-family:var(--serif);font-size:40px;font-weight:600">Mellow</div>
+      <div style="color:var(--ink-2);font-size:14px;margin-top:6px;font-weight:600">Small moments. Steady momentum.</div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;padding-bottom:8px">
+      <div class="card" style="display:flex;align-items:center;justify-content:center;gap:11px;padding:15px;border-radius:18px;font-weight:800;font-size:15px">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px"><path fill="#EA4335" d="M12 11v3.8h5.3c-.2 1.4-1.6 4-5.3 4-3.2 0-5.8-2.6-5.8-5.8S8.8 7.2 12 7.2c1.8 0 3 .8 3.7 1.5l2.5-2.4C16.6 4.7 14.5 3.8 12 3.8c-4.5 0-8.2 3.7-8.2 8.2s3.7 8.2 8.2 8.2c4.7 0 7.8-3.3 7.8-8 0-.5 0-.9-.1-1.2H12Z"/></svg>
+        Continue with Google
+      </div>
+      <div style="text-align:center;color:var(--ink-2);font-size:13px;font-weight:700">or continue as guest</div>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Sign in</b></div></div>
+
+<!-- ONBOARDING WELCOME -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="display:flex;flex-direction:column">
+    <div class="dots" style="margin-bottom:8px"><i class="on"></i><i></i></div>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <div style="position:relative;width:180px;height:180px;margin-bottom:30px">
+        <div style="position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 42% 38%,#fff,#FFE6D3);box-shadow:0 0 60px 14px rgba(255,220,190,.7)"></div>
+        <div style="position:absolute;inset:34px;border-radius:50%;border:1.5px solid #F1885B44"></div>
+        <svg viewBox="0 0 24 24" style="position:absolute;top:60px;left:60px;width:60px;height:60px" fill="none" stroke="#E56B3B" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg>
+      </div>
+      <div style="font-family:var(--serif);font-size:34px;font-weight:600">mellow</div>
+      <div style="color:var(--ink-2);font-size:15px;margin-top:8px;font-weight:600">your daily moment of calm</div>
+    </div>
+    <div class="btn btn-coral">Get started</div>
+  </div>
+</div></div><div class="cap"><b>Onboarding</b> — welcome</div></div>
+
+<!-- ONBOARDING GOALS -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view scroll" style="display:flex;flex-direction:column">
+    <div class="dots" style="margin-bottom:16px"><i></i><i class="on"></i></div>
+    <div style="font-family:var(--serif);font-size:27px;font-weight:600;line-height:1.15">What brings you<br>to Mellow?</div>
+    <div style="color:var(--ink-2);font-size:14px;margin-top:6px;font-weight:600;margin-bottom:16px">Choose all that apply</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div class="goal c sel"><span class="gi" style="background:#fff6"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21s-7-4.3-7-9.5A3.5 3.5 0 0 1 12 8a3.5 3.5 0 0 1 7 3.5C19 16.7 12 21 12 21Z"/></svg></span>Reduce stress</div>
+      <div class="goal l sel"><span class="gi" style="background:#fff6"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/></svg></span>Build mindfulness</div>
+      <div class="goal"><span class="gi" style="background:var(--sky-soft);color:var(--sky-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M17 6a6 6 0 1 1-9 5 5 5 0 0 0 9-5Z"/></svg></span>Improve sleep</div>
+      <div class="goal k sel"><span class="gi" style="background:#fff6"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.5 14s1.4 2 3.5 2 3.5-2 3.5-2M9 10h.01M15 10h.01"/></svg></span>Track my mood</div>
+      <div class="goal"><span class="gi" style="background:var(--sage-soft);color:var(--sage-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M12 21c-4-3-7-6-7-10a4 4 0 0 1 7-2 4 4 0 0 1 7 2c0 4-3 7-7 10Z"/></svg></span>Practice gratitude</div>
+      <div class="goal"><span class="gi" style="background:var(--honey-soft);color:var(--honey-deep)"><svg class="ic" viewBox="0 0 24 24"><path d="M9 11l2 2 4-4"/><circle cx="12" cy="12" r="8.5"/></svg></span>Stay accountable</div>
+      <div class="goal s sel"><span class="gi" style="background:#fff6"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 4 6 9 6 9s6-5 6-9a6 6 0 0 0-6-6Z"/></svg></span>Manage anxiety</div>
+      <div class="goal h sel"><span class="gi"><svg class="ic" viewBox="0 0 24 24"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5 18 18M18 6l-1.5 1.5M7.5 16.5 6 18"/><circle cx="12" cy="12" r="3.5"/></svg></span>General wellness</div>
+    </div>
+    <div class="btn btn-coral" style="margin-top:18px">Start your journey</div>
+  </div>
+</div></div><div class="cap"><b>Onboarding</b> — goals</div></div>
+
+<!-- PROFILE -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view scroll">
+    <div class="appbar"><div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div><h2>Profile</h2></div>
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin:6px 0 20px">
+      <div class="avatar h" style="width:84px;height:84px;border-radius:28px;font-size:32px;font-family:var(--serif)">A</div>
+      <div style="font-family:var(--serif);font-size:24px;font-weight:600;margin-top:14px">Ayush Varma</div>
+      <div style="color:var(--honey-deep);font-size:13.5px;font-weight:700;margin-top:2px">@calmmelon286</div>
+      <div style="color:var(--ink-2);font-size:12.5px;margin-top:2px">ayushvarma505@gmail.com</div>
+    </div>
+    <div class="label" style="margin:0 2px 10px">Your progress</div>
+    <div class="card" style="display:flex;padding:18px 10px;margin-bottom:18px">
+      <div style="flex:1;text-align:center"><div style="font-size:26px;font-weight:800">3</div><div style="color:var(--ink-2);font-size:12px;font-weight:600">coins</div></div>
+      <div style="width:1px;background:var(--line)"></div>
+      <div style="flex:1;text-align:center"><div style="font-size:26px;font-weight:800">1</div><div style="color:var(--ink-2);font-size:12px;font-weight:600">day streak</div></div>
+      <div style="width:1px;background:var(--line)"></div>
+      <div style="flex:1;text-align:center"><div style="font-size:26px;font-weight:800">1</div><div style="color:var(--ink-2);font-size:12px;font-weight:600">best streak</div></div>
+    </div>
+    <div class="label" style="margin:0 2px 10px">Your goals</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px">
+      <span style="background:var(--coral-soft);color:var(--coral-deep);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px">Reduce stress</span>
+      <span style="background:var(--honey-soft);color:var(--honey-deep);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px">Stay accountable</span>
+      <span style="background:var(--sage-soft);color:var(--sage-deep);font-weight:700;font-size:13px;padding:9px 14px;border-radius:999px">General wellness</span>
+    </div>
+    <div class="btn btn-ghost">Sign out</div>
+  </div>
+</div></div><div class="cap"><b>Profile</b></div></div>
+
+<!-- MOOD CALENDAR -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view scroll">
+    <div class="appbar"><div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div><h2>Mood</h2></div>
+    <div class="card" style="padding:16px;margin-bottom:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M15 6l-6 6 6 6"/></svg>
+        <div style="font-weight:800;font-size:15px">August 2025</div>
+        <svg class="ic" viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;color:var(--ink-3);font-size:10px;font-weight:800;margin-bottom:6px"><span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span></div>
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;text-align:center;font-size:11.5px;font-weight:700">
+        <span style="color:var(--ink-3)">27</span><span style="color:var(--ink-3)">28</span><span style="color:var(--ink-3)">29</span><span style="color:var(--ink-3)">30</span><span style="color:var(--ink-3)">31</span>
+        <span class="md" style="--m:var(--sage)">1</span><span class="md" style="--m:var(--sky)">2</span>
+        <span class="md" style="--m:var(--sky)">3</span><span class="md" style="--m:var(--honey)">4</span><span class="md" style="--m:var(--sage)">5</span><span class="md" style="--m:var(--sage)">6</span><span class="md" style="--m:var(--coral)">7</span><span class="md" style="--m:var(--sky)">8</span><span class="md" style="--m:var(--sage)">9</span>
+        <span class="md" style="--m:var(--honey)">10</span><span class="md" style="--m:var(--sage)">11</span><span class="md" style="--m:var(--sky)">12</span><span class="md" style="--m:var(--sage)">13</span><span class="md" style="--m:var(--sage)">14</span><span class="md" style="--m:var(--sky)">15</span><span class="md today">16</span>
+        <span>17</span><span>18</span><span>19</span><span>20</span><span>21</span><span>22</span><span>23</span>
+      </div>
+    </div>
+    <div class="label" style="margin:0 2px 10px">How are you feeling today?</div>
+    <div style="display:flex;justify-content:space-between;gap:6px">
+      <div style="text-align:center"><div class="face" style="width:46px;height:46px;background:var(--coral-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 16q3.5-2.5 7 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10px;font-weight:700;color:var(--ink-2);margin-top:5px">Sad</div></div>
+      <div style="text-align:center"><div class="face" style="width:46px;height:46px;background:var(--honey-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 15.5q3.5-1.3 7 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10px;font-weight:700;color:var(--ink-2);margin-top:5px">Low</div></div>
+      <div style="text-align:center"><div class="face" style="width:46px;height:46px;background:var(--canvas-2)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" stroke-width="1.7" stroke-linecap="round"><path d="M9 15h6M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10px;font-weight:700;color:var(--ink-2);margin-top:5px">Okay</div></div>
+      <div style="text-align:center"><div class="face" style="width:46px;height:46px;background:var(--sky-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 14.5q3.5 2 7 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10px;font-weight:700;color:var(--ink-2);margin-top:5px">Good</div></div>
+      <div style="text-align:center"><div class="face" style="width:46px;height:46px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div><div style="font-size:10px;font-weight:700;color:var(--ink-2);margin-top:5px">Great</div></div>
+    </div>
+    <div class="card" style="margin-top:16px;padding:14px 16px;display:flex;align-items:center;gap:10px;background:var(--sage-soft);border-color:transparent">
+      <svg class="ic" viewBox="0 0 24 24" style="width:20px;height:20px;color:var(--sage-deep)"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v4h-4"/></svg>
+      <span style="font-size:13px;font-weight:700;color:var(--sage-deep)">Your mood is trending upward this week</span>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Mood</b> — calendar + check-in</div></div>
+
+<!-- JOURNAL HISTORY -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view scroll">
+    <div class="appbar"><div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></div><h2>My journal</h2></div>
+    <div class="card" style="padding:16px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--honey-deep);font-weight:800;font-size:12px">APR 18, 2026</span>
+        <div class="face" style="width:34px;height:34px;background:var(--canvas-2)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-2)" stroke-width="1.8" stroke-linecap="round"><path d="M9 15h6M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="font-weight:800;font-size:16px;margin-top:9px">Does this help? I think yes</div>
+      <div style="color:var(--ink-2);font-size:13px;line-height:1.5;margin-top:4px">It really helps me with my well-being when I write my thoughts out.</div>
+      <div style="color:var(--ink-3);font-size:11.5px;font-weight:600;margin-top:9px">1:06 PM</div>
+    </div>
+    <div class="card" style="padding:16px;margin-bottom:12px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--honey-deep);font-weight:800;font-size:12px">APR 18, 2026</span>
+        <div class="face" style="width:34px;height:34px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="font-weight:800;font-size:16px;margin-top:9px">A day to remember</div>
+      <div style="color:var(--ink-2);font-size:13px;line-height:1.5;margin-top:4px">Today was an eventful day, I won’t forget it ever!</div>
+      <div style="color:var(--ink-3);font-size:11.5px;font-weight:600;margin-top:9px">1:05 PM</div>
+    </div>
+    <div class="card" style="padding:16px">
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span style="color:var(--honey-deep);font-weight:800;font-size:12px">APR 18, 2026</span>
+        <div class="face" style="width:34px;height:34px;background:var(--sky-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky-deep)" stroke-width="1.8" stroke-linecap="round"><path d="M8.5 14.5q3.5 2 7 0M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="font-weight:800;font-size:16px;margin-top:9px">First journal</div>
+      <div style="color:var(--ink-2);font-size:13px;line-height:1.5;margin-top:4px">Hi, I’m Ayush and this is my first journal. I’m happy to get started.</div>
+      <div style="color:var(--ink-3);font-size:11.5px;font-weight:600;margin-top:9px">1:04 PM</div>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Journal history</b></div></div>
+
+<!-- BUDDIES -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view scroll">
+    <div class="appbar"><div class="back"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div><h2>Buddies</h2></div>
+    <div class="card" style="padding:16px;margin-bottom:18px">
+      <div class="label" style="margin-bottom:10px">Add a buddy</div>
+      <div class="field" style="margin-bottom:12px">their username</div>
+      <div class="btn btn-coral" style="padding:14px;border-radius:16px;font-size:14.5px">Send request</div>
+    </div>
+    <div class="label" style="margin:0 2px 10px">Your buddies</div>
+    <div class="card" style="display:flex;align-items:center;gap:12px;padding:13px;margin-bottom:11px">
+      <div class="avatar h" style="width:42px;height:42px;border-radius:14px">J</div>
+      <div style="flex:1"><div style="font-weight:800;font-size:14px">@jollyplum576</div><div style="display:flex;align-items:center;gap:5px;margin-top:2px"><span style="width:7px;height:7px;border-radius:50%;background:var(--sage)"></span><span style="font-size:11.5px;color:var(--ink-2);font-weight:600">Connected</span></div></div>
+      <div style="width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#F49A34,#EE7C43);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(238,124,67,.35)"><svg viewBox="0 0 24 24" style="width:20px;height:20px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0-8-8"/><path d="M12 8v4l3 2"/></svg></div>
+    </div>
+    <div class="card" style="display:flex;align-items:center;gap:12px;padding:13px;margin-bottom:11px">
+      <div class="avatar s" style="width:42px;height:42px;border-radius:14px">S</div>
+      <div style="flex:1"><div style="font-weight:800;font-size:14px">@swiftstarfruit425</div><div style="display:flex;align-items:center;gap:5px;margin-top:2px"><span style="width:7px;height:7px;border-radius:50%;background:var(--sage)"></span><span style="font-size:11.5px;color:var(--ink-2);font-weight:600">Connected</span></div></div>
+      <div style="width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#F49A34,#EE7C43);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 14px rgba(238,124,67,.35)"><svg viewBox="0 0 24 24" style="width:20px;height:20px" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20a8 8 0 1 0-8-8"/><path d="M12 8v4l3 2"/></svg></div>
+    </div>
+    <div style="text-align:center;color:var(--ink-3);font-size:12px;font-weight:600;margin-top:4px">Hold a buddy’s bell to send a gentle nudge</div>
+  </div>
+</div></div><div class="cap"><b>Buddies</b></div></div>
+
+<!-- REWARD -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="background:linear-gradient(180deg,#FDE7C6,#F7EDE0 60%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+    <div style="position:relative;margin-bottom:8px">
+      <svg viewBox="0 0 24 24" style="position:absolute;top:-14px;left:-42px;width:20px;height:20px" fill="#F4A63C"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+      <svg viewBox="0 0 24 24" style="position:absolute;top:8px;right:-46px;width:15px;height:15px" fill="#6FB08A"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+      <svg viewBox="0 0 24 24" style="position:absolute;bottom:-6px;left:-30px;width:12px;height:12px" fill="#8E82CE"><path d="M12 2l1.5 7L20 10l-6 2 1 8-3-5-3 5 1-8-6-2 6.5-1z"/></svg>
+      <div style="width:120px;height:144px;position:relative">
+        <div style="position:absolute;top:0;left:22px;right:22px;height:16px;background:#C9781B;border-radius:8px"></div>
+        <div style="position:absolute;top:14px;left:10px;right:10px;bottom:0;border-radius:18px 18px 26px 26px;background:#ffffffcc;border:3px solid #ffffff;overflow:hidden">
+          <div style="position:absolute;left:0;right:0;bottom:0;height:74%;background:linear-gradient(180deg,#FFE08A,#FFC94D)"></div>
+        </div>
+      </div>
+    </div>
+    <div style="font-family:var(--serif);font-size:30px;font-weight:600;margin-top:16px">Reward unlocked!</div>
+    <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;padding:9px 18px;border-radius:999px;box-shadow:var(--sh-sm);margin-top:14px"><span style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF0B8,#F4B740);border:2px solid #E39B1E"></span><span style="font-weight:800;color:var(--honey-deep);font-size:16px">+13 coins</span></div>
+    <div style="color:var(--ink-2);font-size:13.5px;margin-top:14px;max-width:230px;line-height:1.5;font-weight:600">Perfect session — you completed all 4 breaths and filled your jar.</div>
+    <div class="btn btn-coral" style="margin-top:26px;width:78%">Back to home</div>
+  </div>
+</div></div><div class="cap"><b>Reward</b> — celebration</div></div>
+
+<!-- DIALOG JOURNAL ENTRY -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="opacity:.35"></div>
+  <div class="scrim">
+    <div class="modal">
+      <div class="label" style="color:var(--lav-deep);margin-bottom:14px">New journal entry</div>
+      <div class="field" style="margin-bottom:10px">Title (optional)</div>
+      <div class="field" style="height:96px;margin-bottom:16px">How was your day?</div>
+      <div style="font-size:12.5px;font-weight:800;color:var(--ink-2);margin-bottom:10px">How are you feeling?</div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:18px">
+        <div class="face" style="width:42px;height:42px;background:var(--coral-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--coral-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 16q3.5-2.5 7 0M9 10h.01M15 10h.01"/></svg></div>
+        <div class="face" style="width:42px;height:42px;background:var(--honey-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--honey-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 15.5q3.5-1.3 7 0M9 10h.01M15 10h.01"/></svg></div>
+        <div class="face" style="width:42px;height:42px;background:var(--sky-soft);outline:2.5px solid var(--sky);outline-offset:2px"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sky-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8.5 14.5q3.5 2 7 0M9 10h.01M15 10h.01"/></svg></div>
+        <div class="face" style="width:42px;height:42px;background:var(--sage-soft)"><svg viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="1.7" stroke-linecap="round"><path d="M8 14q4 3.5 8 0M9 10h.01M15 10h.01"/></svg></div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <div class="btn" style="flex:1;background:var(--canvas-2);color:var(--ink-2);padding:14px">Cancel</div>
+        <div class="btn btn-coral" style="flex:1.6;padding:14px;font-size:14px">Save · +10 coins</div>
+      </div>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Dialog</b> — journal entry</div></div>
+
+<!-- DIALOG SETTINGS -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="opacity:.35"></div>
+  <div class="scrim">
+    <div class="modal">
+      <div style="font-family:var(--serif);font-size:20px;font-weight:600;margin-bottom:14px">Settings</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0">
+        <div style="display:flex;align-items:center;gap:12px"><span style="width:38px;height:38px;border-radius:12px;background:var(--lav-soft);display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 24 24" style="width:19px;height:19px" fill="none" stroke="var(--lav-deep)" stroke-width="1.9" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg></span><div><div style="font-weight:800;font-size:14px">Theme</div><div style="font-size:11.5px;color:var(--ink-2);font-weight:600">Dark</div></div></div>
+        <div style="width:46px;height:27px;border-radius:999px;background:var(--honey);position:relative"><span style="position:absolute;top:3px;right:3px;width:21px;height:21px;border-radius:50%;background:#fff"></span></div>
+      </div>
+      <div class="btn" style="background:var(--canvas-2);color:var(--ink);margin-top:12px;padding:13px;font-size:14px">Close</div>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Dialog</b> — settings</div></div>
+
+<!-- DIALOG BREATH REWARD -->
+<div class="col"><div class="phone"><div class="screen sc">
+  <div class="sb"><span>9:41</span><span></span></div>
+  <div class="view" style="background:linear-gradient(180deg,#FCE7D6,#DCE7F3);opacity:.5"></div>
+  <div class="scrim">
+    <div class="modal" style="text-align:center">
+      <div style="width:60px;height:60px;border-radius:20px;background:var(--sage-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 14px"><svg viewBox="0 0 24 24" style="width:30px;height:30px" fill="none" stroke="var(--sage-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20c-4 0-7-3-7-8 4 0 7 3 7 8Z"/><path d="M12 20c4 0 7-3 7-9-4 0-7 4-7 9Z"/><path d="M12 20v-9"/></svg></div>
+      <div style="font-family:var(--serif);font-size:22px;font-weight:600">Calm reward</div>
+      <div style="font-size:30px;font-weight:800;color:var(--honey-deep);margin:10px 0">+13 coins</div>
+      <div style="color:var(--ink-2);font-size:13.5px;line-height:1.5;font-weight:600;max-width:230px;margin:0 auto">You completed all 4 breaths and earned a calm reward moment.</div>
+      <div class="btn btn-coral" style="margin-top:20px">Done</div>
+    </div>
+  </div>
+</div></div><div class="cap"><b>Dialog</b> — breath reward</div></div>
+
+</div>
+<script>
+function setMode(m){document.getElementById('tl').classList.toggle('on',m==='light');document.getElementById('td').classList.toggle('on',m==='dark');document.querySelectorAll('#grid .sc').forEach(s=>s.classList.toggle('dark',m==='dark'));}
+</script>
+</body></html>

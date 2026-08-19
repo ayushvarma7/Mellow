@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mellow_canvas"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_gutter">
+
+        <!-- ===== Hero header ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/bg_hero_honey"
+            android:paddingTop="30dp"
+            android:paddingBottom="28dp"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp">
+
+            <FrameLayout
+                android:layout_width="88dp"
+                android:layout_height="88dp"
+                android:background="@drawable/shape_oval"
+                android:backgroundTint="@color/white">
+
+                <TextView
+                    android:id="@+id/tv_avatar_initial"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textColor="@color/mellow_honey_deep"
+                    android:textSize="36sp"
+                    android:fontFamily="@font/fraunces_semibold" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tv_display_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Loading…"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:fontFamily="@font/fraunces_semibold"
+                android:layout_marginTop="14dp" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="13.5sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:alpha="0.92"
+                android:layout_marginTop="4dp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="12.5sp"
+                android:alpha="0.8"
+                android:layout_marginTop="2dp" />
+        </LinearLayout>
+
+        <!-- ===== Stat tiles ===== -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp">
+
+            <!-- Coins -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_round_12"
+                    android:backgroundTint="@color/mellow_honey_soft">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_coin"
+                        app:tint="@color/mellow_honey_deep"
+                        android:contentDescription="coins" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_stat_coins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/jakarta_extrabold"
+                    android:layout_marginTop="9dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="coins"
+                    android:textColor="@color/mellow_ink_2"
+                    android:textSize="11.5sp"
+                    android:layout_marginTop="1dp" />
+            </LinearLayout>
+
+            <!-- Streak -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_round_12"
+                    android:backgroundTint="@color/mellow_coral_soft">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_flame"
+                        app:tint="@color/mellow_coral_deep"
+                        android:contentDescription="streak" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_stat_streak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/jakarta_extrabold"
+                    android:layout_marginTop="9dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="day streak"
+                    android:textColor="@color/mellow_ink_2"
+                    android:textSize="11.5sp"
+                    android:layout_marginTop="1dp" />
+            </LinearLayout>
+
+            <!-- Best streak -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/bg_card"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_round_12"
+                    android:backgroundTint="@color/mellow_sage_soft">
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_trophy"
+                        app:tint="@color/mellow_sage_deep"
+                        android:contentDescription="best streak" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_stat_best"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="22sp"
+                    android:fontFamily="@font/jakarta_extrabold"
+                    android:layout_marginTop="9dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="best streak"
+                    android:textColor="@color/mellow_ink_2"
+                    android:textSize="11.5sp"
+                    android:layout_marginTop="1dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ===== Goals ===== -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your goals"
+            android:textAppearance="@style/TextAppearance.Mellow.Label"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/radius_md"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@color/mellow_surface"
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/mellow_line"
+            android:layout_marginBottom="24dp">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_goals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- ===== Sign out ===== -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_sign_out"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="Sign out"
+            android:textAllCaps="false"
+            android:textSize="15sp"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:textColor="@color/mellow_coral_deep"
+            app:strokeColor="@color/mellow_coral_deep"
+            app:cornerRadius="18dp" />
+
+    </LinearLayout>
+</ScrollView>

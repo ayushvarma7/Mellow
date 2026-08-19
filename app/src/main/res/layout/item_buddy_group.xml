@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardBackgroundColor="@color/mellow_surface"
+    app:cardCornerRadius="@dimen/radius_md"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="13dp">
+
+        <!-- row 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/shape_round_14"
+                android:backgroundTint="@color/mellow_honey">
+                <TextView
+                    android:id="@+id/tv_buddy_initial"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="?"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/jakarta_extrabold" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="11dp">
+
+                <TextView
+                    android:id="@+id/tv_buddy_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@buddy"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="14.5sp"
+                    android:fontFamily="@font/jakarta_bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="3dp">
+                    <View
+                        android:layout_width="7dp"
+                        android:layout_height="7dp"
+                        android:background="@drawable/shape_oval"
+                        android:backgroundTint="@color/mellow_sage" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="Connected"
+                        android:textColor="@color/mellow_ink_2"
+                        android:textSize="11.5sp"
+                        android:fontFamily="@font/jakarta" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/btn_nudge"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/shape_round_14"
+                android:backgroundTint="@color/mellow_coral"
+                android:clickable="true"
+                android:focusable="true">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_bell"
+                    android:contentDescription="Nudge" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <!-- row 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="11dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <View style="@style/BuddyDotOn" />
+                <View style="@style/BuddyDotOn" />
+                <View style="@style/BuddyDotOn" />
+                <View style="@style/BuddyDotOff" />
+                <View style="@style/BuddyDotOn" />
+                <View style="@style/BuddyDotOn" />
+                <View style="@style/BuddyDotToday" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_remove_buddy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:textColor="@color/mellow_ink_3"
+                android:textSize="12sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:padding="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

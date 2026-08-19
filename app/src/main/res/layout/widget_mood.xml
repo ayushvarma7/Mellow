@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/widget_bg"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:id="@+id/widgetTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_leaf"
+            android:contentDescription="Mellow" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="7dp"
+            android:text="How are you feeling?"
+            android:textColor="@color/mellow_ink"
+            android:textSize="14sp"
+            android:fontFamily="@font/jakarta_bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:layout_marginTop="12dp">
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/mood1" android:layout_width="46dp" android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mood_face_depressed" android:contentDescription="Sad" />
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/mood2" android:layout_width="46dp" android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mood_face_sad" android:contentDescription="Low" />
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/mood3" android:layout_width="46dp" android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mood_face_neutral" android:contentDescription="Okay" />
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/mood4" android:layout_width="46dp" android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mood_face_happy" android:contentDescription="Good" />
+        </FrameLayout>
+
+        <FrameLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1">
+            <ImageView android:id="@+id/mood5" android:layout_width="46dp" android:layout_height="46dp"
+                android:layout_gravity="center"
+                android:src="@drawable/mood_face_overjoyed" android:contentDescription="Great" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/widgetStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="Tap a face to log today"
+        android:textColor="@color/mellow_ink_2"
+        android:textSize="11.5sp"
+        android:fontFamily="@font/jakarta" />
+
+</LinearLayout>

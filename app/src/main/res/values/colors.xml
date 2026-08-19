@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ============================================================
+         MELLOW DESIGN SYSTEM v2 — "Warm Calm"  (LIGHT)
+         A coherent, multi-hue pastel language.
+         Existing token names are preserved (remapped) so every
+         other screen keeps compiling; new tokens are added below.
+         ============================================================ -->
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--Canvas / surface / ink-->
+    <color name="mellow_canvas">#F7F3EC</color>
+    <color name="mellow_canvas_2">#F1E9DD</color>
+    <color name="mellow_surface_warm">#FFFDF9</color>
+    <color name="mellow_ink">#2B2621</color>
+    <color name="mellow_ink_2">#8B8177</color>
+    <color name="mellow_ink_3">#B9AFA4</color>
+    <color name="mellow_line">#ECE4D8</color>
+
+    <!--Honey (brand / coins)-->
+    <color name="mellow_honey">#F4A63C</color>
+    <color name="mellow_honey_deep">#E0891F</color>
+    <color name="mellow_honey_soft">#FBEBCB</color>
+
+    <!--Coral (breathing / energy)-->
+    <color name="mellow_coral">#F1885B</color>
+    <color name="mellow_coral_deep">#E56B3B</color>
+    <color name="mellow_coral_soft">#FBDFD1</color>
+
+    <!--Sage (streak / growth / success)-->
+    <color name="mellow_sage">#6FB08A</color>
+    <color name="mellow_sage_deep">#4E9169</color>
+    <color name="mellow_sage_soft">#DBEBDF</color>
+
+    <!--Lavender (journal / calm)-->
+    <color name="mellow_lav">#8E82CE</color>
+    <color name="mellow_lav_deep">#6E60B8</color>
+    <color name="mellow_lav_soft">#E7E2F6</color>
+
+    <!--Sky (mood / focus)-->
+    <color name="mellow_sky">#5EA6D9</color>
+    <color name="mellow_sky_deep">#3F8AC4</color>
+    <color name="mellow_sky_soft">#D8EAF6</color>
+
+    <!-- Gradient stops -->
+    <color name="mellow_honey_grad_a">#FBB84D</color>
+    <color name="mellow_honey_grad_b">#F49A34</color>
+    <color name="mellow_honey_grad_c">#EE8A3C</color>
+    <color name="mellow_coral_grad_a">#F49A34</color>
+    <color name="mellow_coral_grad_b">#EE7C43</color>
+    <color name="mellow_breathe_top">#FCE7D6</color>
+    <color name="mellow_breathe_mid">#F6DCD6</color>
+    <color name="mellow_breathe_bottom">#DCE7F3</color>
+
+    <!-- ============================================================
+         LEGACY TOKEN NAMES — kept & remapped to the new palette.
+         Other layouts/activities reference these, so do NOT remove.
+         ============================================================ -->
+    <color name="mellow_bg_dark">#F7F3EC</color>       <!-- window / canvas -->
+    <color name="mellow_bg_mid">#F1E9DD</color>        <!-- subtle surface -->
+    <color name="mellow_accent_gold">#F4A63C</color>   <!-- brand honey -->
+    <color name="mellow_accent_soft">#E56B3B</color>   <!-- coral accent -->
+    <color name="mellow_text_primary">#2B2621</color>
+    <color name="mellow_text_secondary">#8B8177</color>
+    <color name="mellow_card_bg">#FFFFFF</color>
+    <color name="mellow_button_bg">#F4A63C</color>
+    <color name="mellow_button_text">#FFFFFF</color>
+    <color name="mellow_streak_bg">#FBDFD1</color>
+    <color name="mellow_coin_gold">#E0891F</color>
+
+    <color name="mellow_background">#F7F3EC</color>
+    <color name="mellow_surface">#FFFFFF</color>
+    <color name="mellow_primary">#B0782E</color>
+    <color name="mellow_primary_dark">#8A5A2B</color>
+    <color name="mellow_divider">#ECE4D8</color>
+    <color name="mellow_error">#C65B4E</color>
+
+    <!--=============================================================
+         MOOD SCALE (1..5) — Freud-style expressive palette
+         1 Depressed · 2 Sad · 3 Neutral · 4 Happy · 5 Overjoyed
+         =============================================================-->
+    <color name="mood_depressed">#A694F5</color>
+    <color name="mood_depressed_soft">#E7E2FB</color>
+    <color name="mood_sad">#ED7E1C</color>
+    <color name="mood_sad_soft">#FBE0C7</color>
+    <color name="mood_neutral">#AEA194</color>
+    <color name="mood_neutral_soft">#EDE6E0</color>
+    <color name="mood_happy">#FFCE5C</color>
+    <color name="mood_happy_soft">#FFF2D4</color>
+    <color name="mood_overjoyed">#9BB068</color>
+    <color name="mood_overjoyed_soft">#E4EBD5</color>
+    <color name="mood_face_ink">#3A2E23</color>
+</resources>

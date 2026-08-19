@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mellow_canvas">
+
+    <!-- ===== TOP CHROME: back · progress · skip ===== -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="10dp">
+
+        <FrameLayout
+            android:id="@+id/btnOnboardBack"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:background="@drawable/shape_oval"
+            android:backgroundTint="@color/mellow_canvas_2"
+            android:clickable="true"
+            android:focusable="true">
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_chevron_left"
+                app:tint="@color/mellow_ink"
+                android:contentDescription="Back" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:layout_weight="1"
+            android:layout_marginStart="14dp"
+            android:layout_marginEnd="14dp"
+            android:background="@drawable/shape_pill"
+            android:backgroundTint="@color/mellow_canvas_2">
+
+            <View
+                android:id="@+id/onboardProgress"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_pill"
+                android:backgroundTint="@color/mood_overjoyed" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/btnOnboardSkip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textColor="@color/mellow_ink_2"
+            android:textSize="14sp"
+            android:fontFamily="@font/jakarta_bold"
+            android:padding="6dp"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <!-- legacy dot ids kept so nothing else breaks -->
+    <View android:id="@+id/dot_1" android:layout_width="0dp" android:layout_height="0dp" />
+    <View android:id="@+id/dot_2" android:layout_width="0dp" android:layout_height="0dp" />
+</LinearLayout>

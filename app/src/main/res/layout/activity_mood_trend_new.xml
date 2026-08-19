@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/mellow_canvas"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/screen_gutter">
+
+        <!-- ============ APP BAR ============ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                app:tint="@color/mellow_ink"
+                android:contentDescription="Back" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="Mood History"
+            android:textAppearance="@style/TextAppearance.Mellow.Display"
+            android:textSize="30sp" />
+
+        <!-- ============ LIST / CALENDAR TOGGLE ============ -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/shape_pill"
+            android:backgroundTint="@color/mellow_canvas_2"
+            android:padding="5dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:id="@+id/btnListView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingVertical="11dp"
+                android:text="List"
+                android:textSize="13sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:textColor="@color/mellow_ink_2"
+                android:background="@drawable/shape_pill"
+                android:backgroundTint="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/btnCalendarView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingVertical="11dp"
+                android:text="Calendar"
+                android:textSize="13sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:textColor="@color/mellow_ink"
+                android:background="@drawable/shape_pill"
+                android:backgroundTint="@color/mellow_surface"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <TextView
+                android:id="@+id/btnOverviewView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingVertical="11dp"
+                android:text="Overview"
+                android:textSize="13sp"
+                android:fontFamily="@font/jakarta_bold"
+                android:textColor="@color/mellow_ink_2"
+                android:background="@drawable/shape_pill"
+                android:backgroundTint="@android:color/transparent"
+                android:clickable="true"
+                android:focusable="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/historySection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvAllMoodsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="2dp"
+            android:text="All Moods (0)"
+            android:textColor="@color/mellow_ink"
+            android:textSize="14.5sp"
+            android:fontFamily="@font/jakarta_bold" />
+
+        <!-- ============ CALENDAR ============ -->
+        <LinearLayout
+            android:id="@+id/calendarSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/bg_card"
+            android:padding="14dp"
+            android:layout_marginTop="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/btnPrevMonth"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_chevron_left"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/mellow_ink_2"
+                    android:contentDescription="Previous month" />
+
+                <TextView
+                    android:id="@+id/tvMonthYear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Month"
+                    android:textColor="@color/mellow_ink"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/jakarta_extrabold" />
+
+                <ImageButton
+                    android:id="@+id/btnNextMonth"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
+                    android:src="@drawable/ic_chevron_right"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    app:tint="@color/mellow_ink_2"
+                    android:contentDescription="Next month" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:weightSum="7">
+                <TextView style="@style/CalWeekday" android:text="S" />
+                <TextView style="@style/CalWeekday" android:text="M" />
+                <TextView style="@style/CalWeekday" android:text="T" />
+                <TextView style="@style/CalWeekday" android:text="W" />
+                <TextView style="@style/CalWeekday" android:text="T" />
+                <TextView style="@style/CalWeekday" android:text="F" />
+                <TextView style="@style/CalWeekday" android:text="S" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/calendarGrid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- ============ LIST VIEW ============ -->
+        <LinearLayout
+            android:id="@+id/listSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:visibility="gone" />
+
+        <!-- ============ LOG TODAY ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How are you feeling?"
+            android:textAppearance="@style/TextAppearance.Mellow.Label"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="26dp" />
+
+        <TextView
+            android:id="@+id/tvTodayMood"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tap a mood to log today"
+            android:textAppearance="@style/TextAppearance.Mellow.Caption"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="3dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="12dp">
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardMood1" style="@style/MoodPick">
+                <LinearLayout style="@style/MoodPickInner">
+                    <ImageView android:layout_width="34dp" android:layout_height="34dp"
+                        android:src="@drawable/mood_face_depressed" android:contentDescription="Depressed" />
+                    <TextView style="@style/MoodPickLabel" android:text="Down" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardMood2" style="@style/MoodPick">
+                <LinearLayout style="@style/MoodPickInner">
+                    <ImageView android:layout_width="34dp" android:layout_height="34dp"
+                        android:src="@drawable/mood_face_sad" android:contentDescription="Sad" />
+                    <TextView style="@style/MoodPickLabel" android:text="Sad" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardMood3" style="@style/MoodPick">
+                <LinearLayout style="@style/MoodPickInner">
+                    <ImageView android:layout_width="34dp" android:layout_height="34dp"
+                        android:src="@drawable/mood_face_neutral" android:contentDescription="Neutral" />
+                    <TextView style="@style/MoodPickLabel" android:text="Neutral" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardMood4" style="@style/MoodPick">
+                <LinearLayout style="@style/MoodPickInner">
+                    <ImageView android:layout_width="34dp" android:layout_height="34dp"
+                        android:src="@drawable/mood_face_happy" android:contentDescription="Happy" />
+                    <TextView style="@style/MoodPickLabel" android:text="Happy" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView android:id="@+id/cardMood5" style="@style/MoodPick">
+                <LinearLayout style="@style/MoodPickInner">
+                    <ImageView android:layout_width="34dp" android:layout_height="34dp"
+                        android:src="@drawable/mood_face_overjoyed" android:contentDescription="Overjoyed" />
+                    <TextView style="@style/MoodPickLabel" android:text="Joyful" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ============ MOOD OVERVIEW ============ -->
+        <LinearLayout
+            android:id="@+id/overviewSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Mood Overview"
+            android:textAppearance="@style/TextAppearance.Mellow.Display"
+            android:textSize="26sp" />
+
+        <TextView
+            android:id="@+id/tvOverviewTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="0 total mood check-ins so far."
+            android:textColor="@color/mellow_ink_2"
+            android:textSize="13.5sp"
+            android:fontFamily="@font/jakarta" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/shape_pill"
+                android:backgroundTint="@color/mellow_canvas_2"
+                android:padding="5dp">
+
+                <TextView android:id="@+id/tabDay"   style="@style/SpanTab" android:text="1 Day" />
+                <TextView android:id="@+id/tabWeek"  style="@style/SpanTab" android:text="1 Week" />
+                <TextView android:id="@+id/tabMonth" style="@style/SpanTab" android:text="1 Month" />
+                <TextView android:id="@+id/tabYear"  style="@style/SpanTab" android:text="1 Year" />
+                <TextView android:id="@+id/tabAll"   style="@style/SpanTab" android:text="All Time" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <edu.northeastern.mellow.ui.mood.MoodWaveView
+            android:id="@+id/waveView"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_marginTop="14dp" />
+
+        <!-- ============ BUBBLES ============ -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:layout_marginStart="2dp"
+            android:text="Mood breakdown"
+            android:textAppearance="@style/TextAppearance.Mellow.Label" />
+
+        <edu.northeastern.mellow.ui.mood.MoodBubbleView
+            android:id="@+id/bubbleView"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_marginTop="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:layout_marginTop="4dp">
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView style="@style/MoodLegend" android:text="● Overjoyed" android:textColor="@color/mood_overjoyed" />
+                <TextView style="@style/MoodLegend" android:text="● Sad" android:textColor="@color/mood_sad" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginStart="20dp">
+                <TextView style="@style/MoodLegend" android:text="● Happy" android:textColor="@color/mood_happy" />
+                <TextView style="@style/MoodLegend" android:text="● Depressed" android:textColor="@color/mood_depressed" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:orientation="vertical" android:layout_marginStart="20dp">
+                <TextView style="@style/MoodLegend" android:text="● Neutral" android:textColor="@color/mood_neutral" />
+            </LinearLayout>
+        </LinearLayout>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="24dp" />
+    </LinearLayout>
+</ScrollView>

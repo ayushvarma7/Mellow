@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mellow — Redesign Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F7F3EC; --canvas-2:#F1E9DD;
+  --surface:#FFFFFF; --surface-warm:#FFFDF9;
+  --ink:#2B2621; --ink-2:#8B8177; --ink-3:#B9AFA4;
+  --line:#ECE4D8;
+  --honey:#F4A63C; --honey-deep:#E08E22; --honey-soft:#FBEBCB;
+  --coral:#F1885B; --coral-deep:#E56B3B; --coral-soft:#FBDFD1;
+  --sage:#6FB08A; --sage-deep:#4E9169; --sage-soft:#DBEBDF;
+  --lav:#8E82CE;  --lav-deep:#6E60B8;  --lav-soft:#E7E2F6;
+  --sky:#5EA6D9;  --sky-deep:#3F8AC4;  --sky-soft:#D8EAF6;
+  --r-lg:28px; --r-md:20px; --r-sm:14px;
+  --sh-sm:0 2px 8px rgba(120,92,58,.06);
+  --sh:0 12px 30px rgba(120,92,58,.12), 0 3px 8px rgba(120,92,58,.06);
+  --sh-lg:0 20px 50px rgba(120,92,58,.18);
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
+  --serif:'Fraunces',Georgia,serif;
+}
+.dark{
+  --canvas:#141319; --canvas-2:#1B1A22;
+  --surface:#201F29; --surface-warm:#242330;
+  --ink:#F3EEE7; --ink-2:#A79E95; --ink-3:#6E6860;
+  --line:#2C2A36;
+  --honey-soft:#3a2f1c; --coral-soft:#3a271e; --sage-soft:#22322a;
+  --lav-soft:#282540; --sky-soft:#1f2c3a;
+  --sh-sm:0 2px 8px rgba(0,0,0,.3);
+  --sh:0 14px 34px rgba(0,0,0,.45), 0 3px 8px rgba(0,0,0,.3);
+  --sh-lg:0 24px 60px rgba(0,0,0,.55);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+body{
+  font-family:var(--font);
+  background:
+    radial-gradient(1200px 700px at 15% -5%, #efe4d3 0%, transparent 55%),
+    radial-gradient(1100px 800px at 100% 0%, #f3e7e0 0%, transparent 50%),
+    #eee6da;
+  color:#2B2621; min-height:100vh; padding:44px 24px 64px;
+}
+.wrap{max-width:1360px;margin:0 auto}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:8px}
+.head h1{font-family:var(--serif);font-weight:600;font-size:44px;letter-spacing:-.02em;color:#2B2621;line-height:1}
+.head h1 span{font-style:italic;color:#E08E22}
+.head p{color:#7a6f62;font-size:15px;margin-top:12px;max-width:640px;line-height:1.55}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0 34px}
+.legend .chip{background:#fff;border:1px solid #eae0d2;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:600;color:#6a6055;display:flex;align-items:center;gap:8px;box-shadow:var(--sh-sm)}
+.dot{width:11px;height:11px;border-radius:50%}
+.stage{display:flex;gap:40px;flex-wrap:wrap;justify-content:center;align-items:flex-start}
+.col{display:flex;flex-direction:column;align-items:center;gap:16px}
+.caption{font-size:13px;font-weight:700;color:#8a7f70;letter-spacing:.02em}
+.caption b{color:#4a4038}
+
+/* ---------- PHONE ---------- */
+.phone{
+  width:384px;height:812px;border-radius:52px;background:#111;
+  padding:12px;box-shadow:var(--sh-lg);position:relative;flex:0 0 auto;
+}
+.screen{
+  width:100%;height:100%;border-radius:42px;overflow:hidden;position:relative;
+  background:var(--canvas);color:var(--ink);font-size:15px;
+  transition:background .3s;
+}
+.notch{position:absolute;top:0;left:50%;transform:translateX(-50%);width:130px;height:30px;background:#111;border-radius:0 0 20px 20px;z-index:60}
+.statusbar{position:absolute;top:0;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-size:14px;font-weight:700;color:var(--ink);z-index:40}
+.statusbar .r{display:flex;gap:7px;align-items:center}
+.statusbar svg{width:17px;height:17px}
+.view{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden}
+.view::-webkit-scrollbar{display:none}
+.pad{padding:60px 22px 120px}
+
+/* icons */
+.ic{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+
+/* ---------- HOME ---------- */
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}
+.greet .k{font-size:13px;font-weight:700;color:var(--ink-2);letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px}
+.greet .t{font-family:var(--serif);font-size:27px;font-weight:600;letter-spacing:-.01em;line-height:1.1}
+.avatar{width:46px;height:46px;border-radius:16px;background:linear-gradient(140deg,var(--lav),var(--sky));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;box-shadow:var(--sh-sm)}
+
+.flamechip{display:inline-flex;align-items:center;gap:6px;background:var(--coral-soft);color:var(--coral-deep);font-weight:800;font-size:14px;padding:8px 13px;border-radius:999px}
+.flamechip svg{width:17px;height:17px;fill:var(--coral-deep);stroke:none}
+
+/* reward jar hero */
+.hero{
+  border-radius:var(--r-lg);padding:22px;margin-bottom:16px;position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FBB84D 0%,#F49A34 55%,#EE8A3C 100%);
+  box-shadow:0 16px 34px rgba(233,150,45,.34);
+}
+.hero .blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.16)}
+.hero .b1{width:180px;height:180px;top:-70px;right:-40px}
+.hero .b2{width:120px;height:120px;bottom:-60px;left:-30px;background:rgba(255,255,255,.1)}
+.hero-row{display:flex;align-items:center;gap:18px;position:relative;z-index:2}
+.jar{width:86px;height:104px;flex:0 0 auto;position:relative}
+.jar .lid{position:absolute;top:0;left:14px;right:14px;height:14px;background:#C9781B;border-radius:7px 7px 3px 3px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.12)}
+.jar .glass{position:absolute;top:12px;left:6px;right:6px;bottom:0;border-radius:16px 16px 22px 22px;background:rgba(255,255,255,.28);border:2px solid rgba(255,255,255,.55);overflow:hidden;backdrop-filter:blur(2px)}
+.jar .fill{position:absolute;left:0;right:0;bottom:0;height:62%;background:linear-gradient(180deg,#FFE08A,#FFC94D);border-radius:0 0 20px 20px}
+.jar .fill:before{content:"";position:absolute;top:-8px;left:0;right:0;height:12px;background:#FFE08A;border-radius:50%}
+.jar .shine{position:absolute;top:16px;left:14px;width:9px;height:46px;background:rgba(255,255,255,.6);border-radius:6px}
+.coin{position:absolute;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF0B8,#F4B740);border:2px solid #E39B1E;box-shadow:0 1px 2px rgba(0,0,0,.15)}
+.hero .txt{color:#fff}
+.hero .txt .big{font-size:34px;font-weight:800;letter-spacing:-.02em;line-height:1;display:flex;align-items:baseline;gap:7px}
+.hero .txt .big small{font-size:15px;font-weight:700;opacity:.85}
+.hero .txt .sub{font-size:13.5px;font-weight:600;color:rgba(255,255,255,.92);margin-top:7px}
+.hero .track{height:8px;border-radius:999px;background:rgba(255,255,255,.28);margin-top:13px;overflow:hidden}
+.hero .track i{display:block;height:100%;width:70%;border-radius:999px;background:#fff}
+.hero .capnote{font-size:11.5px;font-weight:700;color:rgba(255,255,255,.85);margin-top:8px;letter-spacing:.02em}
+
+/* stat tiles */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.tile{background:var(--surface);border-radius:var(--r-md);padding:15px 16px;box-shadow:var(--sh-sm);border:1px solid var(--line)}
+.tile .ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.tile .ico svg{width:20px;height:20px}
+.tile .n{font-size:26px;font-weight:800;letter-spacing:-.02em;line-height:1}
+.tile .l{font-size:12.5px;font-weight:600;color:var(--ink-2);margin-top:3px}
+.i-coral{background:var(--coral-soft);color:var(--coral-deep)}
+.i-sage{background:var(--sage-soft);color:var(--sage-deep)}
+.i-lav{background:var(--lav-soft);color:var(--lav-deep)}
+.i-sky{background:var(--sky-soft);color:var(--sky-deep)}
+.i-honey{background:var(--honey-soft);color:var(--honey-deep)}
+
+/* affirmation */
+.affirm{background:var(--lav-soft);border-radius:var(--r-md);padding:17px 18px;margin-bottom:16px;position:relative;overflow:hidden}
+.affirm .q{font-family:var(--serif);font-size:60px;line-height:.6;color:var(--lav);opacity:.45;position:absolute;top:16px;left:14px}
+.affirm .k{font-size:11.5px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--lav-deep);margin:0 0 6px 40px}
+.affirm .body{font-family:var(--serif);font-size:17.5px;font-weight:500;line-height:1.35;color:var(--ink);margin-left:40px}
+
+/* section label */
+.slabel{display:flex;align-items:center;justify-content:space-between;margin:4px 2px 12px}
+.slabel h3{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.slabel a{font-size:13px;font-weight:700;color:var(--honey-deep);text-decoration:none}
+
+/* quick tiles */
+.quick{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-bottom:22px}
+.qt{border-radius:var(--r-md);padding:15px 12px 14px;position:relative;overflow:hidden;min-height:104px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:transform .15s}
+.qt:active{transform:scale(.97)}
+.qt .qic{width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center}
+.qt .qic svg{width:21px;height:21px}
+.qt .qn{font-size:14px;font-weight:800;letter-spacing:-.01em}
+.qt .qs{font-size:11px;font-weight:600;opacity:.75;margin-top:1px}
+.qt.j{background:var(--lav-soft);color:var(--lav-deep)}
+.qt.m{background:var(--sky-soft);color:var(--sky-deep)}
+.qt.b{background:var(--sage-soft);color:var(--sage-deep)}
+
+/* CTA */
+.cta{
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;
+  font-size:16.5px;font-weight:800;letter-spacing:.01em;
+  padding:18px;border-radius:22px;box-shadow:0 14px 26px rgba(238,124,67,.4);cursor:pointer;transition:transform .15s
+}
+.cta:active{transform:scale(.98)}
+.cta svg{width:21px;height:21px;stroke-width:2.3}
+
+/* bottom nav */
+.nav{
+  position:absolute;left:16px;right:16px;bottom:16px;height:70px;border-radius:26px;
+  background:var(--surface);box-shadow:var(--sh);border:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-around;padding:0 10px;z-index:30
+}
+.nav .item{display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-3);font-size:10.5px;font-weight:700;flex:1;cursor:pointer}
+.nav .item svg{width:23px;height:23px;stroke-width:2}
+.nav .item.on{color:var(--honey-deep)}
+.nav .fab{
+  width:58px;height:58px;border-radius:20px;margin-top:-26px;
+  background:linear-gradient(135deg,#F49A34,#EE7C43);color:#fff;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 12px 22px rgba(238,124,67,.5);flex:0 0 auto
+}
+.nav .fab svg{width:27px;height:27px;stroke-width:2.4}
+
+/* ---------- BREATHING ---------- */
+.breathe{position:absolute;inset:0;background:linear-gradient(180deg,#FCE7D6 0%,#F6DCD6 40%,#DCE7F3 100%);display:flex;flex-direction:column;align-items:center}
+.dark .breathe{background:linear-gradient(180deg,#2a2130 0%,#241f2e 45%,#1a2030 100%)}
+.br-top{width:100%;display:flex;align-items:center;justify-content:space-between;padding:60px 24px 0}
+.br-close{width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:#5a5049}
+.dark .br-close{background:rgba(255,255,255,.1);color:#e8e2da}
+.br-title{font-size:14px;font-weight:800;letter-spacing:.02em;color:#6a5f56}
+.dark .br-title{color:#d8d0e2}
+.orb-wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;width:100%}
+.orb-outer{position:relative;width:260px;height:260px;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);animation:pulse 8s ease-in-out infinite}
+.ring.r2{animation-delay:.6s;inset:22px;opacity:.7}
+.ring.r3{animation-delay:1.2s;inset:44px;opacity:.5}
+.dark .ring{border-color:rgba(255,255,255,.18)}
+.orb{
+  width:184px;height:184px;border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,#ffffff 0%,#fff6ee 45%,#ffe6d3 100%);
+  box-shadow:0 0 70px 18px rgba(255,240,225,.9),0 20px 50px rgba(224,150,90,.35);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  animation:breathe 8s ease-in-out infinite;
+}
+.dark .orb{background:radial-gradient(circle at 42% 38%,#fff 0%,#efe6ff 45%,#d9ccf5 100%);box-shadow:0 0 70px 18px rgba(200,180,255,.5),0 20px 50px rgba(0,0,0,.4)}
+.orb .word{font-size:22px;font-weight:800;color:#3a322c;letter-spacing:-.01em}
+.orb .tmr{font-size:14px;font-weight:700;color:#9a8b7d;margin-top:3px}
+@keyframes breathe{0%,100%{transform:scale(.82)}45%,55%{transform:scale(1.12)}}
+@keyframes pulse{0%,100%{transform:scale(.85);opacity:.25}50%{transform:scale(1.12);opacity:.7}}
+.breath-dots{display:flex;gap:11px;margin-top:44px}
+.breath-dots i{width:11px;height:11px;border-radius:50%;background:rgba(255,255,255,.55);border:1.5px solid rgba(210,140,90,.4)}
+.breath-dots i.done{background:#F1885B;border-color:#E56B3B}
+.br-coins{margin-top:20px;display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.55);padding:9px 16px;border-radius:999px;font-weight:800;color:#C9781B;font-size:14px}
+.dark .br-coins{background:rgba(255,255,255,.1);color:#F4C05A}
+.br-coins .c{width:18px;height:18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#FFF0B8,#F4B740);border:2px solid #E39B1E}
+.br-bottom{width:100%;padding:0 24px 46px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.br-cta{width:100%;text-align:center;background:#fff;color:#E56B3B;font-weight:800;font-size:16.5px;padding:18px;border-radius:22px;box-shadow:0 10px 24px rgba(224,120,80,.25);cursor:pointer}
+.dark .br-cta{background:rgba(255,255,255,.12);color:#ffd7c4}
+.br-hint{font-size:12.5px;font-weight:600;color:#8a7d70}
+.dark .br-hint{color:#a99fb2}
+
+/* toggle */
+.toggle{position:fixed;top:22px;right:24px;z-index:99;display:flex;gap:6px;background:#fff;border-radius:999px;padding:5px;box-shadow:var(--sh);border:1px solid #eadfce}
+.toggle button{border:none;background:none;padding:8px 16px;border-radius:999px;font-family:var(--font);font-weight:700;font-size:13px;color:#8a7f70;cursor:pointer}
+.toggle button.on{background:#2B2621;color:#fff}
+</style>
+</head>
+<body>
+<div class="toggle">
+  <button id="tl" class="on" onclick="setMode('light')">☀︎ Light</button>
+  <button id="td" onclick="setMode('dark')">☾ Dark</button>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div>
+      <h1>Mellow <span>reimagined</span></h1>
+      <p>A warm, multi-hue design language inspired by Balance &amp; Evolve — soft pastel cards, a real icon set, display typography, gamification made beautiful, and a floating nav. Same app, Play-Store polish.</p>
+    </div>
+  </div>
+  <div class="legend">
+    <span class="chip"><span class="dot" style="background:#F4A63C"></span>Honey — brand / coins</span>
+    <span class="chip"><span class="dot" style="background:#F1885B"></span>Coral — breathing</span>
+    <span class="chip"><span class="dot" style="background:#6FB08A"></span>Sage — streak</span>
+    <span class="chip"><span class="dot" style="background:#8E82CE"></span>Lavender — journal</span>
+    <span class="chip"><span class="dot" style="background:#5EA6D9"></span>Sky — mood</span>
+    <span class="chip">Aa Fraunces + Plus Jakarta Sans</span>
+  </div>
+
+  <div class="stage" id="stage">
+
+    <!-- ============ HOME (LIGHT) ============ -->
+    <div class="col">
+      <div class="phone"><div class="notch"></div><div class="screen sc">
+        <div class="statusbar"><span>9:41</span><span class="r">
+          <svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" style="width:22px;height:15px" fill="currentColor"><rect x="1" y="6" width="20" height="12" rx="3" opacity=".35"/><rect x="1" y="6" width="15" height="12" rx="3"/><rect x="22" y="9" width="2" height="6" rx="1"/></svg>
+        </span></div>
+        <div class="view"><div class="pad">
+
+          <div class="topbar">
+            <div class="greet">
+              <div class="k">Wednesday, Aug 17</div>
+              <div class="t">Good afternoon, Ayush ☀︎</div>
+            </div>
+            <div class="avatar">AV</div>
+          </div>
+
+          <!-- reward jar hero -->
+          <div class="hero">
+            <div class="blob b1"></div><div class="blob b2"></div>
+            <div class="hero-row">
+              <div class="jar">
+                <div class="lid"></div>
+                <div class="glass"><div class="fill"></div><div class="shine"></div></div>
+                <div class="coin" style="top:54px;left:24px"></div>
+                <div class="coin" style="top:66px;left:44px"></div>
+                <div class="coin" style="top:78px;left:30px"></div>
+              </div>
+              <div class="txt">
+                <div class="big">12 <small>/ 15 coins</small></div>
+                <div class="sub">Your jar is almost full ✨</div>
+                <div class="track"><i style="width:80%"></i></div>
+                <div class="capnote">3 MORE TO UNLOCK A REWARD</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- stat tiles -->
+          <div class="stats">
+            <div class="tile">
+              <div class="ico i-coral"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg></div>
+              <div class="n">5<span style="font-size:15px;color:var(--ink-2)"> days</span></div>
+              <div class="l">Current streak</div>
+            </div>
+            <div class="tile">
+              <div class="ico i-honey"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div>
+              <div class="n">248</div>
+              <div class="l">Total coins</div>
+            </div>
+          </div>
+
+          <!-- affirmation -->
+          <div class="affirm">
+            <div class="q">“</div>
+            <div class="k">Daily affirmation</div>
+            <div class="body">Your calm is your superpower.</div>
+          </div>
+
+          <div class="slabel"><h3>Today's tools</h3><a>See all</a></div>
+          <div class="quick">
+            <div class="qt j">
+              <div class="qic"><svg class="ic" viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a0 0 0 0 1 0 0H4z"/><path d="M14 4v5h5"/><path d="M8 13h7M8 17h5"/></svg></div>
+              <div><div class="qn">Journal</div><div class="qs">+10 coins</div></div>
+            </div>
+            <div class="qt m">
+              <div class="qic"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.5 2 3.5 2 3.5-2 3.5-2"/><path d="M9 9.5h.01M15 9.5h.01"/></svg></div>
+              <div><div class="qn">Mood</div><div class="qs">Log now</div></div>
+            </div>
+            <div class="qt b">
+              <div class="qic"><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/><path d="M16 6.5a3 3 0 0 1 0 5.5M18 19a5.5 5.5 0 0 0-3-4.9"/></svg></div>
+              <div><div class="qn">Buddies</div><div class="qs">2 nudges</div></div>
+            </div>
+          </div>
+
+          <div class="cta">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>
+            Start today's check-in
+          </div>
+
+        </div></div>
+
+        <div class="nav">
+          <div class="item on"><svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>Home</div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.5 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"/></svg>Mood</div>
+          <div class="fab"><svg viewBox="0 0 24 24" class="ic"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg></div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><path d="M4 4h11l5 5v11H4z"/><path d="M14 4v5h5M8 13h7M8 17h5"/></svg>Journal</div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>You</div>
+        </div>
+      </div></div>
+      <div class="caption"><b>Home</b> — light</div>
+    </div>
+
+    <!-- ============ BREATHING ============ -->
+    <div class="col">
+      <div class="phone"><div class="notch"></div><div class="screen sc">
+        <div class="statusbar"><span>9:41</span><span class="r">
+          <svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" style="width:22px;height:15px" fill="currentColor"><rect x="1" y="6" width="20" height="12" rx="3" opacity=".35"/><rect x="1" y="6" width="15" height="12" rx="3"/><rect x="22" y="9" width="2" height="6" rx="1"/></svg>
+        </span></div>
+        <div class="breathe">
+          <div class="br-top">
+            <div class="br-close"><svg class="ic" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></div>
+            <div class="br-title">BREATHING · 4 BREATHS</div>
+            <div style="width:42px"></div>
+          </div>
+          <div class="orb-wrap">
+            <div class="orb-outer">
+              <div class="ring"></div><div class="ring r2"></div><div class="ring r3"></div>
+              <div class="orb"><div class="word">Breathe in</div><div class="tmr">0:04</div></div>
+            </div>
+            <div class="breath-dots"><i class="done"></i><i class="done"></i><i></i><i></i></div>
+            <div class="br-coins"><span class="c"></span>0 / 13 coins</div>
+          </div>
+          <div class="br-bottom">
+            <div class="br-cta">Pause</div>
+            <div class="br-hint">Follow the orb — in as it grows, out as it shrinks</div>
+          </div>
+        </div>
+      </div></div>
+      <div class="caption"><b>Daily check-in</b> — guided breathing</div>
+    </div>
+
+    <!-- ============ HOME (DARK) ============ -->
+    <div class="col">
+      <div class="phone"><div class="notch"></div><div class="screen sc dark">
+        <div class="statusbar"><span>9:41</span><span class="r">
+          <svg class="ic" viewBox="0 0 24 24" style="width:16px;height:16px"><path d="M2 8.5a15 15 0 0 1 20 0"/><path d="M5 12a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></svg>
+          <svg viewBox="0 0 24 24" style="width:22px;height:15px" fill="currentColor"><rect x="1" y="6" width="20" height="12" rx="3" opacity=".35"/><rect x="1" y="6" width="15" height="12" rx="3"/><rect x="22" y="9" width="2" height="6" rx="1"/></svg>
+        </span></div>
+        <div class="view"><div class="pad">
+          <div class="topbar">
+            <div class="greet">
+              <div class="k">Wednesday, Aug 17</div>
+              <div class="t">Good evening, Ayush ☾</div>
+            </div>
+            <div class="avatar">AV</div>
+          </div>
+          <div class="hero">
+            <div class="blob b1"></div><div class="blob b2"></div>
+            <div class="hero-row">
+              <div class="jar">
+                <div class="lid"></div>
+                <div class="glass"><div class="fill"></div><div class="shine"></div></div>
+                <div class="coin" style="top:54px;left:24px"></div>
+                <div class="coin" style="top:66px;left:44px"></div>
+                <div class="coin" style="top:78px;left:30px"></div>
+              </div>
+              <div class="txt">
+                <div class="big">12 <small>/ 15 coins</small></div>
+                <div class="sub">Your jar is almost full ✨</div>
+                <div class="track"><i style="width:80%"></i></div>
+                <div class="capnote">3 MORE TO UNLOCK A REWARD</div>
+              </div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="tile">
+              <div class="ico i-coral"><svg class="ic" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg></div>
+              <div class="n">5<span style="font-size:15px;color:var(--ink-2)"> days</span></div>
+              <div class="l">Current streak</div>
+            </div>
+            <div class="tile">
+              <div class="ico i-honey"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3h4"/></svg></div>
+              <div class="n">248</div>
+              <div class="l">Total coins</div>
+            </div>
+          </div>
+          <div class="affirm">
+            <div class="q">“</div>
+            <div class="k">Daily affirmation</div>
+            <div class="body">Your calm is your superpower.</div>
+          </div>
+          <div class="slabel"><h3>Today's tools</h3><a>See all</a></div>
+          <div class="quick">
+            <div class="qt j"><div class="qic"><svg class="ic" viewBox="0 0 24 24"><path d="M4 4h11l5 5v11H4z"/><path d="M14 4v5h5M8 13h7M8 17h5"/></svg></div><div><div class="qn">Journal</div><div class="qs">+10 coins</div></div></div>
+            <div class="qt m"><div class="qic"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.5 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"/></svg></div><div><div class="qn">Mood</div><div class="qs">Log now</div></div></div>
+            <div class="qt b"><div class="qic"><svg class="ic" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 6.5a3 3 0 0 1 0 5.5M18 19a5.5 5.5 0 0 0-3-4.9"/></svg></div><div><div class="qn">Buddies</div><div class="qs">2 nudges</div></div></div>
+          </div>
+          <div class="cta">
+            <svg class="ic" viewBox="0 0 24 24"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg>
+            Start today's check-in
+          </div>
+        </div></div>
+        <div class="nav">
+          <div class="item on"><svg viewBox="0 0 24 24" class="ic"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h14V9.5"/></svg>Home</div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.5 2 3.5 2 3.5-2 3.5-2M9 9.5h.01M15 9.5h.01"/></svg>Mood</div>
+          <div class="fab"><svg viewBox="0 0 24 24" class="ic"><path d="M12 2c1 3-1 4-1 6a3 3 0 0 0 6 0c0-1 0-2-.5-3 2 2 3.5 4.5 3.5 7.5a8 8 0 0 1-16 0c0-3.5 2.5-6 4-8 .5 2 2 2 4 5.5"/></svg></div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><path d="M4 4h11l5 5v11H4z"/><path d="M14 4v5h5M8 13h7M8 17h5"/></svg>Journal</div>
+          <div class="item"><svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>You</div>
+        </div>
+      </div></div>
+      <div class="caption"><b>Home</b> — dark mode (properly, this time)</div>
+    </div>
+
+  </div>
+</div>
+<script>
+function setMode(m){
+  document.getElementById('tl').classList.toggle('on',m==='light');
+  document.getElementById('td').classList.toggle('on',m==='dark');
+  document.querySelectorAll('.stage .col').forEach((col,i)=>{
+    const sc=col.querySelector('.sc');
+    // keep the 3rd phone (index 2) always dark as the "dark showcase"
+    if(i===2){sc.classList.add('dark');return;}
+    sc.classList.toggle('dark',m==='dark');
+  });
+}
+</script>
+</body>
+</html>
