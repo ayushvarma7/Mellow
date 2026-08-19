@@ -222,4 +222,99 @@
         <item name="android:textSize">10.5sp</item>
         <item name="android:fontFamily">@font/jakarta_bold</item>
     </style>
+
+    <!-- ===== Profile (You) page ===== -->
+    <style name="ProfileTile">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_card</item>
+        <item name="android:padding">14dp</item>
+    </style>
+    <style name="ProfileTileIcon">
+        <item name="android:layout_width">38dp</item>
+        <item name="android:layout_height">38dp</item>
+        <item name="android:background">@drawable/shape_round_12</item>
+    </style>
+    <style name="ProfileTileGlyph">
+        <item name="android:layout_width">19dp</item>
+        <item name="android:layout_height">19dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="ProfileTileNum">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">9dp</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+    </style>
+    <style name="ProfileTileLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="WeekDay">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="WeekDayFace">
+        <item name="android:layout_width">32dp</item>
+        <item name="android:layout_height">32dp</item>
+    </style>
+    <style name="WeekDayLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:textColor">@color/mellow_ink_2</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/jakarta_bold</item>
+    </style>
+
+    <style name="ActivityRow">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">12dp</item>
+    </style>
+    <style name="ActivityIcon">
+        <item name="android:layout_width">36dp</item>
+        <item name="android:layout_height">36dp</item>
+        <item name="android:background">@drawable/shape_round_12</item>
+    </style>
+    <style name="ActivityGlyph">
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="ActivityLabel">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_marginStart">12dp</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/jakarta</item>
+    </style>
+    <style name="ActivityValue">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/mellow_ink</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/jakarta_extrabold</item>
+    </style>
+    <style name="ActivityDivider">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginStart">60dp</item>
+        <item name="android:background">@color/mellow_line</item>
+    </style>
 </resources>
