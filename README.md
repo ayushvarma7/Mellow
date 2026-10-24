@@ -153,7 +153,7 @@ Both read through the app's repository layer via a Hilt `EntryPoint`, so the one
 **MVVM**, Java, with a clean separation between UI, domain and data.
 
 ```
-edu.northeastern.mellow/
+mellow/
 ├── data/
 │   ├── model/         MoodEntry, JournalEntry, UserProgress, BuddyGroup, …
 │   ├── repository/    interfaces + Firestore implementations
@@ -179,7 +179,7 @@ git clone https://github.com/ayushvarma7/Mellow.git
 cd Mellow
 ```
 
-1. Create a Firebase project and add an Android app with package name **`edu.northeastern.mellow`**
+1. Create a Firebase project and add an Android app using the `applicationId` from `app/build.gradle`
 2. Enable **Authentication** (Google + Anonymous) and **Cloud Firestore**
 3. Download `google-services.json` into `app/`
 4. Add your SHA-1 to the Firebase project for Google Sign-In
