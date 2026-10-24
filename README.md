@@ -12,6 +12,24 @@ Sub-minute breathing check-ins · mood tracking with on-device insights · guide
 
 ---
 
+## Watch the tour
+
+A 67-second tour: breathing check-ins, gentle gamification, mood insights, the buddy nudge and the architecture behind it.
+
+https://github.com/user-attachments/assets/e48a397f-5923-4687-88df-5b0bfbf78527
+
+<p align="center">
+  <img src="images/brag/showcase_1.jpg" width="100%" alt="Mellow intro, the 30-second hook, breathing check-in and coin jar with soft streaks" />
+</p>
+<p align="center">
+  <img src="images/brag/showcase_2.jpg" width="100%" alt="Mood palette, journaling, and the buddy nudge as a habit cue" />
+</p>
+<p align="center">
+  <img src="images/brag/showcase_3.jpg" width="100%" alt="Home-screen widgets, clean MVVM architecture, every screen, and credits" />
+</p>
+
+---
+
 ## What it is
 
 Instead of long meditation sessions or complex habit trackers, Mellow focuses on **micro check-ins** — guided breathing that takes under a minute — paired with a coin-based reward system, mood journaling, and an optional buddy system.
@@ -124,6 +142,9 @@ Both read through the app's repository layer via a Hilt `EntryPoint`, so the one
 
 **Buddies** — send requests, connect, and nudge a buddy with a haptic buzz.
 `BuddyActivity` · `BuddyRepository`
+
+**The nudge, a social cue for the habit:** long-press a buddy's card and their phone buzzes in real time through a Firestore snapshot listener. Three distinct haptic patterns confirm the press, the send, and the arrival. The nudge is the *cue*, the 30-second check-in is the *routine*, coins and a kept streak are the *reward*, and tomorrow you nudge them back.
+`BuddyViewModel` · `VibrationHelper`
 
 ---
 
